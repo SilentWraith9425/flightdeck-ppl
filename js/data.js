@@ -7,84 +7,495 @@ const STUDY_GUIDES = [
     title: "Airplanes and Aerodynamics",
     stage: 1,
     icon: "✈",
-    description: "Aircraft structures, flight controls, aerodynamic principles, and stability.",
+    description: "Aircraft structures, flight controls, aerodynamic forces, stability, stalls, spins, ground effect, and left-turning tendencies.",
     driveId: "1c60QGyqPLQ9Eud4lLRujN--Tb3l64Wr5",
     flashcards: [
-      { front: "What are the three types of fuselage construction?", back: "Truss, monocoque, and semi-monocoque. Semi-monocoque is most common — uses bulkheads, longerons, stringers, and a stressed outer skin to share stress loads." },
-      { front: "What is the difference between nosewheel and tailwheel aircraft?", back: "Nosewheel (tricycle gear): third wheel under the nose. Tailwheel (conventional): third wheel under the tail. Nosewheel is more common in modern training aircraft." },
-      { front: "What are the four forces acting on an airplane in flight?", back: "Lift (upward), Weight/Gravity (downward), Thrust (forward), Drag (rearward). In steady level flight, Lift = Weight and Thrust = Drag." },
-      { front: "What is angle of attack (AOA)?", back: "The angle between the wing's chord line and the relative wind. As AOA increases, lift increases — until the critical angle of attack is reached and the wing stalls." },
-      { front: "What is the critical angle of attack?", back: "The AOA at which the wing stalls (airflow separates from upper surface). Usually 18-20°. A stall occurs at the SAME critical AOA regardless of airspeed, weight, or bank angle." },
-      { front: "What are the three axes of an airplane?", back: "Longitudinal (nose to tail) → roll. Lateral (wingtip to wingtip) → pitch. Vertical (top to bottom through CG) → yaw. All three axes pass through the center of gravity." },
-      { front: "What controls roll, pitch, and yaw?", back: "Roll → ailerons. Pitch → elevator (or stabilator). Yaw → rudder." },
-      { front: "What is adverse yaw?", back: "When ailerons deflect for a turn, the descending aileron (outside wing) creates more drag than the rising aileron, causing the nose to yaw OPPOSITE the direction of turn." },
-      { front: "What is P-factor?", back: "Asymmetric propeller thrust at high AOA: the descending blade (right side) has a greater AOA than the ascending blade, producing more thrust and causing left-yaw tendency." },
-      { front: "What is torque effect?", back: "Newton's 3rd law: the clockwise-rotating propeller (as seen from pilot) creates an equal counterclockwise reaction on the airframe, tending to roll the airplane left." },
-      { front: "What is a semi-monocoque fuselage?", back: "Uses bulkheads, formers, longerons, stringers, and a stressed outer skin. The skin shares the stress loads with the internal framework. Most common modern aircraft construction." },
-      { front: "What is the purpose of flaps?", back: "Secondary flight controls that increase both lift and drag, allowing slower approach/landing speeds by increasing wing camber and area. Extended in stages for different phases of approach." },
-      { front: "Positive static stability means:", back: "The aircraft has an initial tendency to RETURN to its original trimmed attitude after a displacement. Most desirable in training aircraft." },
-      { front: "What is a monocoque fuselage?", back: "Little or no internal bracing (only bulkheads). The outer skin bears the primary stress loads — like an aluminum beverage can. Challenged by maintaining strength while controlling weight." },
+      { front: "Four primary structural units of any conventional airplane:", back: "Fuselage, wings, empennage (tail section), and landing gear." },
+      { front: "What does the main landing gear consist of?", back: "Two main wheels and struts. Each main strut is attached to the primary structure of the fuselage or the wing." },
+      { front: "Nosewheel (tricycle) vs tailwheel (conventional) airplane:", back: "Nosewheel: third wheel in FRONT of main gear (under the nose). Tailwheel: third wheel under the TAIL. Both designed to steer on the ground; not stressed for excessive loads." },
+      { front: "Fixed vs retractable landing gear:", back: "Fixed gear is permanently extended. Retractable retracts into the wing or fuselage during flight to reduce drag and improve performance." },
+      { front: "Three types of fuselage construction:", back: "1) Truss (steel/aluminum framework bearing main loads). 2) Monocoque (no internal bracing; stressed outer skin only). 3) Semi-monocoque (bulkheads + longerons + stringers + stressed skin). Most modern aircraft use semi-monocoque." },
+      { front: "Truss-type fuselage:", back: "Reinforced shell where skin is supported by a complex rigid framework of structural members (typically steel tubing welded together) that bear the main stress loads." },
+      { front: "Monocoque fuselage:", back: "Single-shell construction with little or no internal bracing other than bulkheads. The stressed outer skin bears the main loads — like an aluminum beverage can. Challenge: balancing strength vs weight." },
+      { front: "Semi-monocoque fuselage components:", back: "Bulkheads, formers, longerons (lengthwise), stringers (lighter, more frequent — provide stiffness and skin attachment). Skin reinforced by these. Can absorb damage with no single piece failure-critical." },
+      { front: "What is a longeron?", back: "Lengthwise structural member running along the fuselage, joining multiple frame members in sequence. Shares the main stress loads. Allows flexibility while supporting loads." },
+      { front: "What is a stringer?", back: "Lighter lengthwise member used with greater frequency than longerons to bridge each frame member. Provides stiffness and serves as attachment for the external skin." },
+      { front: "Cantilever vs semi-cantilever wing:", back: "Semi-cantilever: braced externally by wing struts AND internally by spars/ribs. Cantilever: NO external bracing — stress carried entirely by internal spars, ribs, and stringers." },
+      { front: "High-wing vs low-wing characteristics:", back: "High-wing: more susceptible to wind on ground; better ground visibility from cockpit; good for sightseeing. Low-wing: better visibility above/around in flight; less susceptible to wind on ground." },
+      { front: "What is wing dihedral angle?", back: "The upward angle of the wings from horizontal (from root to tip). Contributes to lateral stability — when one wing drops in a sideslip, the lower wing presents a greater AOA to the airflow, restoring level flight." },
+      { front: "Composite aircraft construction:", back: "Fiber-reinforced matrix systems (fiberglass, carbon fiber, Kevlar). Matrix is the 'glue'; fibers carry most of the load. Advantages: smooth skins, complex curves, light weight, no corrosion, no fatigue cracking." },
+      { front: "Disadvantages of composite construction:", back: "Damage often invisible (delamination underneath). Even tool drops can cause hidden damage. Epoxy degrades above 150°F (white paint helps stay under 140°F). Complicates lightning protection — fine metal meshes bonded to skin." },
+      { front: "Three axes of rotation in an airplane:", back: "Lateral (wingtip to wingtip) → PITCH (controlled by elevator). Longitudinal (nose to tail) → ROLL (controlled by ailerons). Vertical (through CG) → YAW (controlled by rudder). All three axes intersect at the CG and are perpendicular to each other." },
+      { front: "Lateral axis = which rotation, which control?", back: "Lateral axis (wingtip to wingtip) → PITCH rotation → ELEVATOR control. Pitch is also called 'longitudinal control' or 'longitudinal stability'." },
+      { front: "Longitudinal axis = which rotation, which control?", back: "Longitudinal axis (nose to tail) → ROLL rotation → AILERONS. Roll is also called 'lateral control' or 'lateral stability'." },
+      { front: "Vertical axis = which rotation, which control?", back: "Vertical axis (through CG, perpendicular to other two) → YAW rotation → RUDDER. Yaw is also called 'directional control' or 'directional stability'." },
+      { front: "Primary flight controls:", back: "Ailerons (roll), elevator OR stabilator (pitch), rudder (yaw). Hinged, movable surfaces on trailing edges of wings and stabilizers. Change camber and AOA when deflected." },
+      { front: "How do ailerons work?", back: "Located outboard on each wing trailing edge. Move in OPPOSITE directions — one up, one down. The down aileron increases lift on that wing; up aileron decreases lift. Imbalance causes the airplane to bank." },
+      { front: "What is a differential aileron?", back: "Up-deflected aileron travels through a GREATER angle than the down-deflected one. This creates parasite drag on the up-aileron side to counter the induced drag of the down-aileron side, reducing adverse yaw." },
+      { front: "What is the empennage?", back: "The tail section. Fixed surfaces: vertical and horizontal stabilizers. Movable surfaces: rudder and elevator." },
+      { front: "Function of the elevator:", back: "Primary pitch control about the lateral axis. Located on the fixed horizontal stabilizer. Pulling yoke back deflects trailing edge UP, creating downward aerodynamic force, tail goes DOWN, nose pitches UP." },
+      { front: "What is a stabilator?", back: "One-piece horizontal stabilizer + elevator combined. Pivots from a central hinge point. When yoke is moved, the entire stabilator changes its angle of attack to produce pitch control." },
+      { front: "What is an antiservo tab?", back: "Tab attached to trailing edge of a STABILATOR. Moves in the SAME direction as the stabilator trailing edge — provides feel/resistance to prevent overcontrol. Can also serve as a trim tab." },
+      { front: "What is a canard?", back: "A small horizontal wing located in FRONT of the main wings. Can have an elevator on its trailing edge or function like a stabilator. Creates LIFT and holds the nose up (rather than tail-down force from a conventional aft tail)." },
+      { front: "Function of the vertical stabilizer:", back: "Provides DIRECTIONAL STABILITY about the vertical axis. Acts like a weathervane, keeping the nose aligned with the relative wind." },
+      { front: "Function of the rudder:", back: "Controls YAW. Located on rear of vertical stabilizer. Operated by rudder pedals. Effectiveness increases with airspeed (more airflow over surface)." },
+      { front: "Secondary flight controls:", back: "Wing flaps, spoilers, trim systems (trim tabs, antiservo tabs, ground-adjustable tabs), and leading-edge devices (slats, slots)." },
+      { front: "Three important functions of flaps:", back: "1) Permit slower landing speeds → shorter landing distance. 2) Permit steeper descent angle without speed increase → clear obstacles to short runways. 3) Can shorten takeoff distance and provide steeper climb path." },
+      { front: "Plain flap:", back: "Portion of trailing edge on a hinged pivot, allowing flap to move downward. Changes the chord line, angle of attack, and camber of the wing." },
+      { front: "Split flap:", back: "Hinged portion of ONLY the bottom surface of the wing. Increases AOA by changing chord line. Creates the LEAST change in pitching moment but the GREATEST amount of drag." },
+      { front: "Slotted flap:", back: "Like a plain flap but with a GAP between trailing edge of wing and leading edge of flap. Air passes through, delaying airflow separation. MOST common type on GA aircraft today." },
+      { front: "Fowler flap:", back: "Type of slotted flap that tilts DOWN and slides REARWARD on tracks. Increases AOA, camber, AND wing area. Provides extra lift without significantly increasing drag." },
+      { front: "Slotted Fowler flap:", back: "Like Fowler but with additional slots adding energy back to airflow. Increases camber as it extends. Slight lift increase coupled with greater drag — ideal for approach and landing." },
+      { front: "Typical maximum flap deflection range:", back: "30° to 40° (when fully extended). Retracted flaps fit flush with the wing trailing edge." },
+      { front: "What are spoilers?", back: "High-drag devices on UPPER wing surfaces that 'spoil' airflow when deployed. Reduce lift, increase drag. Found on gliders and high-speed aircraft. Can also assist with lateral control when linked to ailerons." },
+      { front: "Purpose of trim systems:", back: "Relieve the pilot of needing to maintain constant control pressure. Small airfoils attached to (or recessed in) trailing edges of primary control surfaces (elevator, aileron, rudder). Set to neutralize control force." },
+      { front: "How does a trim tab work?", back: "Moves in the OPPOSITE direction to the primary control surface. Example: trim tab deflected DOWN causes the elevator/tail to be pushed UP, so nose pitches DOWN. Set AFTER establishing desired control input, to relieve pressure." },
+      { front: "Trim tab procedure:", back: "Use the control yoke/rudder pedals to position the primary control first; THEN adjust trim to relieve control pressure. Don't use trim to position the primary control." },
+      { front: "What are fixed slots?", back: "Leading-edge devices that direct airflow to the upper wing surface. Allow smooth airflow at higher AOAs, delay airflow separation, DELAY stalls to a higher AOA. Do NOT increase wing camber." },
+      { front: "What are slats?", back: "Movable leading-edge segments on tracks. At low AOA: flush with leading edge. At high AOA: low-pressure area or pilot control forces them forward, opening a slot. May increase wing camber and area." },
+      { front: "Four basic aerodynamic forces in flight:", back: "1) LIFT — upward, perpendicular to flight path through wing's center of lift. 2) WEIGHT — downward through CG (gravity). 3) THRUST — forward, parallel to longitudinal axis. 4) DRAG — rearward, parallel to relative wind." },
+      { front: "Equilibrium condition in straight-and-level unaccelerated flight:", back: "Lift = Weight AND Thrust = Drag. Sum of all upward forces equals sum of all downward; sum of all forward equals sum of all rearward." },
+      { front: "Bernoulli's Principle (in aviation):", back: "Internal pressure of a fluid decreases at points where the speed of the fluid increases. High-speed flow = low pressure; low-speed flow = high pressure. Air accelerates over the cambered upper wing surface, producing lower pressure (lift)." },
+      { front: "Newton's Third Law in lift generation:", back: "For every action there is an equal and opposite reaction. The lower wing surface deflects air downward (action) → upward reaction force on the wing. Lift acts upward, perpendicular to relative wind and lateral axis." },
+      { front: "What is the Center of Lift (CL)?", back: "Also called the Center of Pressure (CP). The single imaginary point along the chord line where all the lift forces are considered to be concentrated." },
+      { front: "Five factors that determine lift generated by a wing:", back: "1) Speed of the wing through the air. 2) Angle of attack. 3) Planform of the wing. 4) Wing area. 5) Air density." },
+      { front: "What is the Center of Gravity (CG)?", back: "Imaginary point on the airplane where all weight is considered to be concentrated — the point of balance. Located along the longitudinal centerline, slightly forward of the center of lift. Position depends on loading (passengers, fuel, cargo)." },
+      { front: "Where is the CG located relative to CL on most airplanes?", back: "CG is positioned SLIGHTLY FORWARD of the CL. This creates a nose-down tendency, providing natural recovery from stall conditions." },
+      { front: "What is thrust?", back: "Forward-acting force produced by the propeller (acting as an airfoil) being powered by the engine. Displaces a large mass of air rearward, propelling the aircraft forward (Newton's 3rd law)." },
+      { front: "Two main types of total drag:", back: "Induced drag (by-product of lift) and parasite drag (resistance from moving through air)." },
+      { front: "What is induced drag?", back: "Undesirable but unavoidable by-product of lift. Caused by wingtip vortices created when high-pressure air below the wing flows around the tip to low-pressure area above. This creates downwash that bends the lift vector rearward — a rearward lift component = induced drag." },
+      { front: "Wingtip vortex rotation direction (viewed from behind):", back: "RIGHT wingtip: counterclockwise (CCW). LEFT wingtip: clockwise (CW). Both vortices spiral inward and upward beyond the wingtip and create a downwash behind." },
+      { front: "How does induced drag vary with airspeed?", back: "Induced drag varies INVERSELY with the SQUARE of the airspeed. Halving airspeed (120 kt → 60 kt) INCREASES induced drag by 4×. Slower flight = greater AOA = more induced drag." },
+      { front: "Three forms of parasite drag:", back: "1) Form drag (frontal area exposed to airstream — reduced by streamlining). 2) Skin friction (microscopic surface roughness — minimized with smooth finish, eliminate rivets/irregularities). 3) Interference drag (airflow interaction at intersections — reduced by fairings)." },
+      { front: "How does parasite drag vary with airspeed?", back: "Increases as the SQUARE of velocity. Doubling speed produces 4× as much parasite drag." },
+      { front: "What is the L/D (lift-to-drag) ratio?", back: "Indicates airfoil efficiency — amount of lift compared to drag produced. Higher L/D = more efficient." },
+      { front: "What happens at L/D MAX?", back: "Point of minimum total drag — least thrust required for level flight. This is also the airspeed for: maximum range, maximum power-off glide range, and BEST GLIDE airspeed." },
+      { front: "What is camber?", back: "The curvature of the airfoil from leading edge to trailing edge. Upper camber = top curve. Lower camber = bottom curve. Mean camber = line midway between upper and lower." },
+      { front: "What is the chord line?", back: "Imaginary straight line drawn from the leading edge to the trailing edge of an airfoil cross section." },
+      { front: "What is the angle of attack (AOA)?", back: "Angle between the wing chord line and the direction of the RELATIVE WIND. Based on FLIGHT PATH, not the ground. Determines lift and (combined with airspeed) stall behavior." },
+      { front: "What is the angle of incidence?", back: "Angle between the chord line of the wing and the LONGITUDINAL AXIS of the airplane. FIXED by design — pilot CANNOT change it. Not to be confused with AOA." },
+      { front: "Critical angle of attack:", back: "The AOA at which the wing STALLS — typically 18° to 20° on most airfoils. The critical AOA does NOT change with weight, bank, temperature, density altitude, or CG location." },
+      { front: "Definition of attitude:", back: "Relationship of the airplane to the horizon — pitch angle (nose up/down) and bank angle (left/right). Measured in degrees of pitch and bank." },
+      { front: "Definition of relative wind:", back: "The airflow relative to the wing as the wing moves through air. Parallel and OPPOSITE to the direction of flight. Determined by the actual flight path, not the angle of the wing to the horizon." },
+      { front: "What is washout?", back: "Wing design where the angle of incidence is LESS at the wingtip than at the wing root. Ensures wing roots stall BEFORE the tips, preserving aileron control at high AOA." },
+      { front: "What is sweepback?", back: "Wings slanted REARWARD from root to tip. Augments dihedral for lateral stability and places center of lift farther rearward (affecting longitudinal stability)." },
+      { front: "Lift equation:", back: "L = ½ × ρ × V² × S × CL. Where: ρ = air density, V = velocity, S = wing area, CL = lift coefficient (function of airfoil shape, AOA, etc.)." },
+      { front: "Why does AOA decrease as airspeed increases (in level flight)?", back: "Lift must equal weight (constant). Since L = ½ρV²SCL, if V increases then CL (and thus AOA) must decrease to keep lift constant." },
+      { front: "Definition of a stall:", back: "Loss of lift and increase in drag occurring when AOA exceeds the critical AOA. Aerodynamic effect only — does NOT mean the engine has stopped. Can occur at ANY airspeed, in ANY attitude." },
+      { front: "Indicated stall speed vs altitude:", back: "An airplane in a given configuration stalls at the SAME INDICATED AIRSPEED regardless of altitude, because the ASI is directly related to air density." },
+      { front: "Which wing stalls first and why?", back: "The WING ROOT stalls first due to WASHOUT (root has greater incidence than tip). This preserves aileron effectiveness near the tips throughout the stall, providing better controllability and stable stall characteristics." },
+      { front: "Requirement for a spin:", back: "BOTH wings must be stalled first. Then if one wing becomes LESS stalled than the other (due to yaw), the airplane enters autorotation. Without yaw, the airplane stalls but does not spin." },
+      { front: "ASI white arc lower limit (VS0):", back: "VS0 = stall speed (power-off) in the LANDING configuration (gear and flaps fully extended). The lower limit of the white arc on the airspeed indicator." },
+      { front: "ASI green arc lower limit (VS1):", back: "VS1 = stall speed (power-off) with flaps and gear UP. The lower limit of the green arc. VS1 is HIGHER than VS0 because retracted flaps reduce lift." },
+      { front: "Stall speed vs load factor relationship:", back: "Stall speed increases in proportion to the SQUARE ROOT of the load factor. EXAMPLE: 45 kt × √4 = 90 kt at a 4G load. In a constant-altitude turn, stall speed increases as bank angle increases." },
+      { front: "Effect of aft CG on stall and stability:", back: "Aft CG: lower stall airspeed (less tail-down force, lower AOA at given airspeed), but LESS STABLE. Stall recovery harder; extreme aft CG can lead to a FLAT SPIN — recovery may be impossible." },
+      { front: "Effect of forward CG on stall and recovery:", back: "Forward CG: HIGHER stall airspeed (critical AOA reached sooner), but easier recovery — greater nose-down tendency and elevator has more leverage from the CG." },
+      { front: "Effect of increased gross weight on stall speed:", back: "Higher weight requires HIGHER AOA at any given airspeed → critical AOA reached at HIGHER airspeed → STALL SPEED INCREASES." },
+      { front: "Effect of snow/ice/frost on the wings:", back: "Even small accumulations change the wing shape, disrupt smooth airflow → INCREASE drag, DECREASE lift, INCREASE stall speed. NEVER take off with wing contamination." },
+      { front: "Stall in turbulence/wind shear:", back: "A vertical gust can cause an abrupt AOA increase, causing a stall. In moderate-severe turbulence or strong crosswinds: fly approach at a HIGHER than normal speed (above stall, below VA)." },
+      { front: "Four ways pilots recognize an impending stall:", back: "1) Vision (attitude, low airspeed). 2) Hearing (decreasing engine/airflow sound intensity). 3) Kinesthesia (sensing 'mushing'/settling). 4) Control feel (controls becoming sloppy/unresponsive). Plus stall warning horn." },
+      { front: "Which control is least affected during a stall?", back: "The RUDDER. It can normally maintain directional control throughout the stall and recovery. AILERONS should NOT be used — using them on a stalled wing can deepen the stall or induce a spin." },
+      { front: "Stall recovery procedure:", back: "1) REDUCE AOA — release back pressure or push the yoke forward. 2) Apply MAX ALLOWABLE POWER smoothly (turn off carb heat). 3) Re-establish straight-and-level flight with COORDINATED controls. 4) Don't use ailerons until AOA is reduced." },
+      { front: "What is a spin?", back: "An aggravated stall resulting in AUTOROTATION — the airplane follows a corkscrew path downward. Both wings stalled, one more than the other. Airplane rolls and yaws toward the more-stalled (lower) wing." },
+      { front: "Four phases of a spin:", back: "1) ENTRY — pilot induces stall + yaw. 2) INCIPIENT — transient between stall and fully developed (forces not balanced yet). 3) DEVELOPED — stabilized near-vertical flight path with balanced forces. 4) RECOVERY — controls applied to stop spin until level flight." },
+      { front: "PARE spin recovery memory aid:", back: "P — Power to IDLE. A — Ailerons to NEUTRAL. R — Rudder OPPOSITE the rotation direction. E — Elevator positive input FORWARD of neutral. (Use POH-specific technique if available.)" },
+      { front: "Spin certification for normal/utility category aircraft:", back: "Must be recoverable from an INCIPIENT spin (not a fully developed spin beyond one turn). Aircraft placarded against spins must be assumed UNRECOVERABLE if a spin develops." },
+      { front: "What is a flat spin?", back: "Occurs when the spin axis is located near the CG, possible with an aft CG. RECOVERY MAY BE IMPOSSIBLE. Another reason to respect aft CG limits." },
+      { front: "What is ground effect?", back: "Interference of the ground/water surface with airflow patterns near the wing. Reduces wingtip vortices, induced angle of attack, and induced drag. Aircraft can fly at a slightly lower airspeed when in ground effect." },
+      { front: "How close to the ground for ground effect to be significant?", back: "Within ONE WINGSPAN of the surface. More pronounced at lower wing heights — especially significant in LOW-WING aircraft." },
+      { front: "Induced drag reduction at various heights in ground effect:", back: "Wing height = wingspan: ~1.4% reduction. = ¼ wingspan: ~23.5%. = 1/10 wingspan: ~47.6%. Large reduction only when very close to the ground." },
+      { front: "Ground effect dangers during takeoff:", back: "Aircraft may LIFT OFF below recommended takeoff speed because reduced drag makes it seem capable. When climbing out of ground effect with insufficient airspeed, increased induced drag may cause the aircraft to SETTLE BACK to the runway." },
+      { front: "Effect on aircraft LEAVING ground effect (climbing out):", back: "1) Requires INCREASED AOA to maintain same lift. 2) Induced drag INCREASES, more thrust required. 3) DECREASE in stability and slight nose-UP pitch tendency." },
+      { front: "Effect on aircraft ENTERING ground effect (landing):", back: "Opposite of leaving: reduced induced drag, lower AOA needed. Tendency to FLOAT down the runway if excess airspeed is carried into the flare." },
+      { front: "What makes an airplane turn?", back: "The HORIZONTAL COMPONENT of lift (when banked). Vertical component still counteracts weight; horizontal component pulls the aircraft into the turn, counteracting centrifugal force. Rudder does NOT cause the turn." },
+      { front: "Why must back pressure be added in a level turn?", back: "Banking divides lift into horizontal and vertical components. Less vertical lift available → aircraft would descend unless total lift is INCREASED. Add back pressure (higher AOA) and/or more power." },
+      { front: "Coordinated turn definition:", back: "The aircraft is flying through the relative wind straight ahead (not sideslipping). The rate of turn matches the bank angle. Use rudder simultaneously with aileron to counter adverse yaw." },
+      { front: "What is positive static stability?", back: "Initial tendency to RETURN to the original (trimmed) attitude after a disturbance. Most desirable characteristic. Illustrated by a ball at the bottom of a bowl." },
+      { front: "What is neutral static stability?", back: "Initial tendency to REMAIN in the new (disturbed) position. Illustrated by a ball on a flat level surface." },
+      { front: "What is negative static stability?", back: "Initial tendency to CONTINUE AWAY from the original attitude after disturbance — divergence. Illustrated by a ball on top of an inverted bowl." },
+      { front: "Positive dynamic stability:", back: "Overall tendency to RETURN to original attitude (directly or through DECREASING oscillations) over time." },
+      { front: "Neutral dynamic stability:", back: "Oscillations do not increase or decrease — they continue indefinitely at constant magnitude." },
+      { front: "Negative dynamic stability:", back: "Oscillations INCREASE in magnitude over time — aircraft diverges progressively from original attitude." },
+      { front: "Most desirable stability combination:", back: "POSITIVE static + POSITIVE dynamic stability — aircraft returns to original attitude with decreasing oscillations or directly." },
+      { front: "Longitudinal stability (pitch) and CG-CL relationship:", back: "POSITIVE longitudinal stability if CL is BEHIND the CG. NEGATIVE if CL is forward of CG. NEUTRAL if CL = CG. Most airplanes have CG slightly forward of CL for nose-down tendency." },
+      { front: "What happens at/aft of aft CG limit?", back: "1) Inability to recover from stalls. 2) Less stable at all airspeeds. 3) Increased likelihood of inadvertent over-stress." },
+      { front: "Four factors influencing lateral stability:", back: "1) DIHEDRAL (most common). 2) Sweepback. 3) Keel effect. 4) Weight distribution (e.g., balancing fuel between wing tanks)." },
+      { front: "How does dihedral provide lateral stability?", back: "When one wing drops in a sideslip, the lower wing meets the relative wind at a GREATER AOA, generating more lift. This restores the airplane to wings-level." },
+      { front: "What is the keel effect?", back: "Side area of fuselage and vertical stabilizer (mostly above and behind CG) acts like a ship's keel. In a sideslip, weight + airflow pressure on the upper area roll the aircraft back toward wings-level." },
+      { front: "What provides directional stability?", back: "The VERTICAL STABILIZER (fin) — weathervane effect. Also augmented by SWEEPBACK (leading wing presents more frontal area, creates more drag, returns aircraft to original direction)." },
+      { front: "What is Dutch roll?", back: "Combination rolling/yawing oscillation in turbulent air. Caused by strong dihedral effect — rolling motion precedes yawing. Each oscillation overshoots wings-level. Reduced by stronger directional stability." },
+      { front: "What is spiral instability?", back: "Occurs when DIRECTIONAL STABILITY is strong but lateral stability is weak. A sideslip causes nose to yaw back into the wind faster than dihedral can restore the bank → outside wing gains more lift → bank steepens → slow downward spiral develops." },
+      { front: "Why might Dutch roll be 'preferred' over spiral instability in design?", back: "Spiral instability rate of divergence is usually gradual and pilot-controllable. Designers often INCREASE directional stability and reduce lateral stability to suppress Dutch roll — accepting some spiral instability." },
+      { front: "Four elements that cause left-turning tendency:", back: "1) TORQUE REACTION (Newton's 3rd law from engine/propeller). 2) CORKSCREWING SLIPSTREAM (strikes vertical stabilizer on left side). 3) GYROSCOPIC PRECESSION (acts 90° from applied force in direction of rotation). 4) P-FACTOR (asymmetric propeller loading at high AOA)." },
+      { front: "When is left-turning tendency strongest?", back: "At LOW airspeed, HIGH angle of attack, and HIGH power settings — e.g., during TAKEOFF and CLIMB. Requires RIGHT RUDDER to maintain straight ground track." },
+      { front: "What is torque reaction?", back: "Newton's 3rd law applied to the prop: the propeller rotating clockwise (from rear) causes the airplane to roll COUNTERCLOCKWISE (i.e., LEFT) about the longitudinal axis. Stronger at high power, low airspeed." },
+      { front: "What is the corkscrewing slipstream effect?", back: "The propeller's rotating slipstream wraps around the fuselage in a corkscrew. At high power and low speed, this rotating air strikes the LEFT side of the vertical stabilizer, pushing the tail right → yawing the nose LEFT." },
+      { front: "What is gyroscopic precession?", back: "Property of a rotating gyroscope (the propeller): a force applied to it produces a reaction 90° AHEAD in the direction of rotation. Most noticeable in tailwheel airplanes when raising the tail on takeoff (yaws nose left)." },
+      { front: "What is P-factor?", back: "Asymmetric propeller loading. At high AOA, the DESCENDING blade (right side, viewed from rear) has a higher effective AOA than the ascending blade (left side) → more thrust on the right → YAWS NOSE LEFT." },
+      { front: "Pitch-down tendency at reduced power:", back: "Most airplanes (except T-tail) pitch DOWN when power is reduced — propeller slipstream downwash on the elevator is reduced, decreasing tail-down force, and the nose drops." },
+      { front: "When does flight control effectiveness increase?", back: "With AIRSPEED. More airflow over the control surface = greater aerodynamic force when deflected. Conversely, at low airspeed (near stall), controls feel sloppy and less effective." },
+      { front: "Why are airplanes designed with the line of thrust below the CG?", back: "The propeller's thrust then provides a NOSE-UP pitching force, which helps offset the inherent nose-heaviness created by CG forward of CL." },
     ],
     quiz: [
       {
-        q: "What type of fuselage construction uses bulkheads, longerons, and a stressed outer skin to share stress loads?",
-        opts: ["Truss type", "Monocoque type", "Semi-monocoque type", "Space frame type"],
-        ans: 2,
-        exp: "Semi-monocoque uses bulkheads, longerons, stringers, and a stressed outer skin. No single piece is failure-critical. It is the most common modern aircraft fuselage design."
+        q: "What are the four primary structural units of any conventional airplane?",
+        opts: ["Fuselage, wings, engine, and propeller", "Fuselage, wings, empennage, and landing gear", "Cockpit, wings, fuel tanks, and landing gear", "Wings, ailerons, tail, and rudder"],
+        ans: 1,
+        exp: "Conventional airplanes have four primary structural units: fuselage (main body), wings (lifting surfaces), empennage (tail section), and landing gear."
       },
       {
-        q: "A wing always stalls at:",
-        opts: ["The same critical angle of attack, regardless of airspeed", "A higher AOA at higher airspeeds", "A lower AOA at lower airspeeds", "An AOA that varies with aircraft weight"],
+        q: "Which type of fuselage construction uses bulkheads, longerons, stringers, and a stressed outer skin to share stress loads?",
+        opts: ["Truss type", "Monocoque type", "Semi-monocoque type", "Cantilever type"],
+        ans: 2,
+        exp: "Semi-monocoque construction uses bulkheads + formers + longerons + stringers + a stressed outer skin together to bear stress loads. No single piece is failure-critical."
+      },
+      {
+        q: "A truss-type fuselage is characterized by:",
+        opts: ["A single shell with no internal bracing", "A complex rigid framework of structural members carrying main loads", "Stressed outer skin only", "Carbon-fiber composite construction"],
+        ans: 1,
+        exp: "The truss type is a reinforced framework (typically welded steel tubing) that carries the compression and tension loads. Light single-engine aircraft may use bolted aluminum alloy."
+      },
+      {
+        q: "A nosewheel (tricycle) landing gear has:",
+        opts: ["Two wheels under the wings and one wheel under the tail", "Two main wheels and a third wheel in FRONT of the main gear", "Three wheels arranged in a triangular pattern under the fuselage", "Two main wheels under the wings and one steerable tailwheel"],
+        ans: 1,
+        exp: "Tricycle gear has two main wheels plus a nosewheel in FRONT of the mains. Tailwheel (conventional) gear has the third wheel behind, under the tail."
+      },
+      {
+        q: "The PRIMARY advantage of retractable landing gear is:",
+        opts: ["Lower maintenance cost", "Reduced drag and improved performance in cruise flight", "Smoother taxi over rough surfaces", "Allows operation from grass strips"],
+        ans: 1,
+        exp: "Retractable gear retracts into the wing or fuselage during flight, reducing drag and significantly improving airplane performance, especially at higher cruise speeds."
+      },
+      {
+        q: "What is wing dihedral?",
+        opts: ["The forward sweep of the wing leading edge", "The downward angle of the wing trailing edge", "The upward angle of the wing from root to tip", "The angle between the wing chord line and the fuselage"],
+        ans: 2,
+        exp: "Dihedral is the upward angle of the wings from the wing root to the wingtip. It contributes to lateral stability by causing the lower wing in a sideslip to have a greater AOA."
+      },
+      {
+        q: "Which is the MOST significant disadvantage of composite aircraft construction?",
+        opts: ["Heavier than aluminum", "Lack of visual proof of damage from impacts", "Susceptibility to corrosion", "Poor performance in flexing environments"],
+        ans: 1,
+        exp: "Composites can suffer extensive internal damage (delaminations) with little or no surface evidence. Even a tool drop or minor impact may require expert inspection."
+      },
+      {
+        q: "The three axes of an airplane all intersect at:",
+        opts: ["The center of lift", "The center of gravity", "The aerodynamic center", "The leading edge of the wing"],
+        ans: 1,
+        exp: "All three axes (longitudinal, lateral, vertical) pass through and intersect at the center of gravity. Each is perpendicular to the other two."
+      },
+      {
+        q: "Rotation about the lateral axis is called:",
+        opts: ["Roll, controlled by ailerons", "Pitch, controlled by elevator", "Yaw, controlled by rudder", "Bank, controlled by ailerons and rudder"],
+        ans: 1,
+        exp: "The lateral axis runs wingtip-to-wingtip. Rotation around it is PITCH, controlled by the elevator (or stabilator). Also called 'longitudinal control'."
+      },
+      {
+        q: "Rotation about the longitudinal axis is called:",
+        opts: ["Pitch, controlled by elevator", "Roll, controlled by ailerons", "Yaw, controlled by rudder", "Slip, controlled by rudder"],
+        ans: 1,
+        exp: "Longitudinal axis runs nose-to-tail. Rotation around it is ROLL, controlled by ailerons. Also called 'lateral control' or 'lateral stability'."
+      },
+      {
+        q: "Which control surface controls movement around the VERTICAL axis?",
+        opts: ["Ailerons", "Elevator", "Rudder", "Spoilers"],
+        ans: 2,
+        exp: "The rudder controls yaw (rotation around the vertical axis). Ailerons control roll, and the elevator controls pitch."
+      },
+      {
+        q: "Adverse yaw during a turn entry is caused by:",
+        opts: ["P-factor at high angles of attack", "The down aileron creating more drag on the outside wing", "Engine torque reaction", "Centrifugal force during the bank"],
+        ans: 1,
+        exp: "When ailerons are deflected, the down aileron (on the rising/outside wing) creates more drag than the up aileron. This drag yaws the nose AWAY from the direction of turn. Rudder corrects."
+      },
+      {
+        q: "A differential aileron is designed to:",
+        opts: ["Increase roll rate at low speeds", "Reduce adverse yaw by creating more drag on the up-going aileron side", "Reduce stall speed in turns", "Allow the ailerons to act as flaps"],
+        ans: 1,
+        exp: "Differential ailerons deflect the up-aileron through a GREATER angle than the down-aileron. This creates parasite drag on the up-aileron side to counter the down-aileron's induced drag, reducing adverse yaw."
+      },
+      {
+        q: "What is the function of the elevator?",
+        opts: ["Controls roll about the longitudinal axis", "Controls yaw about the vertical axis", "Controls pitch about the lateral axis", "Provides directional stability"],
+        ans: 2,
+        exp: "The elevator is the primary pitch control surface, operating around the lateral axis. Pulling the yoke back deflects it up, pushing the tail down and nose up."
+      },
+      {
+        q: "An antiservo tab on a stabilator moves:",
+        opts: ["Opposite to the stabilator's trailing edge", "In the SAME direction as the stabilator's trailing edge", "Only when the autopilot is engaged", "Independently to relieve elevator pressure"],
+        ans: 1,
+        exp: "An antiservo tab moves in the SAME direction as the stabilator trailing edge. This creates resistance that prevents over-control, giving the pilot proper control feel. Can also serve as a trim tab."
+      },
+      {
+        q: "The MOST common type of flap on modern general aviation aircraft is the:",
+        opts: ["Plain flap", "Split flap", "Slotted flap", "Fowler flap"],
+        ans: 2,
+        exp: "Slotted flaps are most common on GA aircraft. The slot allows high-pressure air from the lower surface to flow to the upper surface of the flap, delaying airflow separation and improving lift."
+      },
+      {
+        q: "A Fowler flap differs from a slotted flap in that the Fowler flap:",
+        opts: ["Only lowers; does not extend rearward", "Extends rearward AND tilts downward, increasing wing area", "Cannot produce as much lift", "Is fixed in position"],
+        ans: 1,
+        exp: "Fowler flaps slide rearward on tracks AND tilt downward, increasing the angle of attack, camber, AND wing area. They provide additional lift without significantly increasing drag."
+      },
+      {
+        q: "Spoilers on the upper wing surface are used to:",
+        opts: ["Increase lift during landing", "'Spoil' airflow and reduce lift while increasing drag", "Provide directional control", "Reduce induced drag"],
+        ans: 1,
+        exp: "Spoilers are high-drag devices on the upper wing surface that disrupt smooth airflow when deployed. They reduce lift and increase drag — useful for descents without speed increase, and (on some aircraft) for lateral control."
+      },
+      {
+        q: "Trim tabs should be used:",
+        opts: ["To position the primary control surface, then held during flight", "Only during takeoff and landing", "AFTER establishing the desired control input, to relieve control pressure", "Only on the rudder"],
+        ans: 2,
+        exp: "Set the primary control with the yoke/pedals first, then adjust trim to relieve the held pressure. Never use trim tabs to actually position the primary control."
+      },
+      {
+        q: "Fixed slots on the leading edge of a wing:",
+        opts: ["Increase wing camber and provide more lift at low AOA", "Direct airflow over the upper wing surface, delaying airflow separation and stall to a higher AOA", "Provide a backup if leading-edge devices fail", "Reduce drag at high speeds"],
+        ans: 1,
+        exp: "Fixed slots direct airflow to the upper wing surface, allowing smooth airflow at higher AOAs. They delay airflow separation and stall — they do NOT increase wing camber."
+      },
+      {
+        q: "The four basic aerodynamic forces in flight are:",
+        opts: ["Lift, weight, thrust, drag", "Lift, gravity, power, friction", "Vertical, horizontal, thrust, drag", "Centripetal, centrifugal, lift, weight"],
         ans: 0,
-        exp: "A wing stalls at the same critical AOA every time. Only the airspeed at which that AOA is reached changes with weight, load factor, and configuration."
+        exp: "The four basic forces: LIFT (upward), WEIGHT (downward), THRUST (forward), DRAG (rearward). In steady level flight: Lift = Weight, Thrust = Drag."
       },
       {
-        q: "Which control surface controls movement around the VERTICAL axis (yaw)?",
-        opts: ["Ailerons", "Elevator", "Rudder", "Stabilator"],
-        ans: 2,
-        exp: "The rudder controls yaw (rotation around the vertical axis). Ailerons control roll (longitudinal axis). Elevator controls pitch (lateral axis)."
-      },
-      {
-        q: "Adverse yaw during aileron input is caused by:",
-        opts: ["The rising wing generating more lift than the descending wing", "The down aileron creating more drag on the outside wing, yawing the nose opposite the turn", "Gyroscopic precession from the propeller", "Increased AOA on the inside wing during turns"],
+        q: "In straight-and-level unaccelerated flight, what is the relationship between the forces?",
+        opts: ["Lift > Weight and Thrust > Drag", "Lift = Weight and Thrust = Drag", "Lift = Thrust and Weight = Drag", "The sum of all forces equals weight"],
         ans: 1,
-        exp: "The descending (outside) aileron creates more drag than the rising aileron, causing the nose to yaw AWAY from the direction of turn. Rudder pressure corrects adverse yaw."
+        exp: "Equilibrium requires Lift = Weight (vertical equilibrium) and Thrust = Drag (horizontal equilibrium). Any change in one force causes acceleration in that direction."
       },
       {
-        q: "P-factor causes a left-yaw tendency because:",
-        opts: ["The propeller rotates counterclockwise as seen from the pilot", "At high AOA, the descending blade has a greater AOA, producing more thrust on the right side", "Engine torque pushes the nose left", "Gyroscopic precession during climbs yaws the nose left"],
+        q: "Bernoulli's Principle, as applied to a wing, states:",
+        opts: ["Air pressure increases as airspeed increases", "Air pressure decreases at points where air speed increases", "Lift equals weight at all airspeeds", "Air density decreases with altitude"],
         ans: 1,
-        exp: "P-factor (asymmetric thrust): at high AOA, the downward-moving blade on the right has a greater effective AOA and produces more thrust than the upward-moving blade on the left, pulling the nose left."
+        exp: "Bernoulli's: as fluid speed increases, internal pressure decreases. Air accelerates over the cambered upper wing surface, lowering pressure above the wing relative to below it — generating lift."
       },
       {
-        q: "Flaps increase aircraft performance by:",
-        opts: ["Increasing only lift", "Increasing only drag", "Increasing both lift and drag", "Decreasing both lift and drag"],
-        ans: 2,
-        exp: "Flaps increase both lift and drag by increasing the wing's camber. They allow slower approach speeds but also create significant drag, especially at full deflection."
-      },
-      {
-        q: "Positive static stability in an aircraft means:",
-        opts: ["The aircraft oscillates indefinitely after displacement", "The aircraft tends to return to its original attitude after displacement", "The aircraft continues to diverge from its original attitude", "Static stability only applies to the longitudinal axis"],
-        ans: 1,
-        exp: "Positive static stability means the initial tendency after a displacement is to return toward the original attitude. This is the desired characteristic for training aircraft."
-      },
-      {
-        q: "The longitudinal axis of an airplane runs:",
-        opts: ["From nose to tail; rotation around it is roll", "From wingtip to wingtip; rotation is pitch", "Vertically through the CG; rotation is yaw", "Parallel to the chord line of the wing"],
+        q: "What is the center of pressure (CP)?",
+        opts: ["The single point along the chord line where total lift forces are considered concentrated", "The center of the wing in spanwise direction", "The location of the maximum wing thickness", "The point where ailerons attach to the wing"],
         ans: 0,
-        exp: "The longitudinal axis runs from nose to tail. Rotation around it is called roll, controlled by ailerons. All three axes intersect at the center of gravity."
+        exp: "Center of pressure (also called center of lift) is the single point along the chord line where all aerodynamic lift forces are considered to act."
       },
       {
-        q: "A nosewheel landing gear configuration is also called:",
-        opts: ["Conventional gear", "Tricycle gear", "Retractable gear", "Tailwheel gear"],
+        q: "Induced drag is a by-product of:",
+        opts: ["Friction between air and the aircraft skin", "Lift generation (wingtip vortices)", "Form drag at the leading edge", "Engine thrust"],
         ans: 1,
-        exp: "Nosewheel aircraft are called tricycle gear (three wheels: two main, one nosewheel). Tailwheel aircraft are called conventional or 'taildragger' aircraft."
+        exp: "Induced drag is created as a by-product of lift. Wingtip vortices form as high-pressure air below the wing curls around to the low-pressure region above, creating downwash that bends the lift vector rearward."
       },
       {
-        q: "Torque effect on a single-engine airplane with a clockwise propeller (as seen from the pilot) tends to roll the airplane:",
-        opts: ["To the right", "To the left", "Depends on airspeed", "Nose forward"],
+        q: "How does induced drag vary with airspeed?",
+        opts: ["Directly proportional to airspeed", "Inversely proportional to the SQUARE of airspeed", "Directly proportional to the square of airspeed", "Independent of airspeed"],
         ans: 1,
-        exp: "By Newton's 3rd law, the clockwise rotation of the propeller creates an equal and opposite counterclockwise reaction on the airframe, tending to roll the airplane left."
+        exp: "Induced drag varies INVERSELY with the square of airspeed. Halving airspeed (120 to 60 kt) quadruples induced drag, because slower flight requires higher AOA."
+      },
+      {
+        q: "How does parasite drag vary with airspeed?",
+        opts: ["Inversely proportional to airspeed", "Directly proportional to airspeed", "Increases as the SQUARE of velocity", "Independent of airspeed"],
+        ans: 2,
+        exp: "Parasite drag increases as the square of velocity. Doubling airspeed produces FOUR TIMES the parasite drag."
+      },
+      {
+        q: "The airspeed at which an airplane has its maximum L/D ratio is also the:",
+        opts: ["Best rate of climb (Vy)", "Best angle of climb (Vx)", "Best glide speed and maximum range speed", "Maneuvering speed (Va)"],
+        ans: 2,
+        exp: "At L/D MAX, drag is minimum and L/D is maximum. This is the airspeed for: maximum range (least fuel/mile) AND maximum power-off glide (best glide speed)."
+      },
+      {
+        q: "The angle of attack is defined as the angle between the:",
+        opts: ["Wing chord line and the relative wind", "Wing chord line and the horizon", "Longitudinal axis and the flight path", "Wing chord line and the fuselage longitudinal axis"],
+        ans: 0,
+        exp: "AOA is the angle between the wing's CHORD LINE and the RELATIVE WIND. It's always referenced to the flight path, not the ground or horizon."
+      },
+      {
+        q: "The angle of incidence is:",
+        opts: ["The same as angle of attack", "The angle between the wing chord line and the longitudinal axis of the airplane", "Adjustable by the pilot in flight", "The angle of the propeller blades"],
+        ans: 1,
+        exp: "Angle of incidence is the fixed angle at which the wing is attached to the fuselage, between the wing chord line and the longitudinal axis. It is set by design and cannot be changed by the pilot."
+      },
+      {
+        q: "A wing stalls when:",
+        opts: ["Airspeed falls below a published number", "The engine fails", "The critical angle of attack is exceeded", "The wing flaps are fully extended"],
+        ans: 2,
+        exp: "A stall is caused by exceeding the critical angle of attack — NOT by airspeed alone. A wing can stall at ANY airspeed, in ANY attitude, at ANY power setting."
+      },
+      {
+        q: "The critical angle of attack of a given airfoil:",
+        opts: ["Decreases with altitude", "Increases at higher airspeeds", "Remains constant regardless of weight, bank, or airspeed", "Varies with center of gravity location"],
+        ans: 2,
+        exp: "The critical AOA is a fixed property of the airfoil — it does NOT change with airspeed, weight, bank angle, density altitude, or CG location. Only the airspeed at which it's reached varies."
+      },
+      {
+        q: "An airplane stalls at the same indicated airspeed regardless of altitude because:",
+        opts: ["The atmospheric pressure is corrected by the altimeter", "The airspeed indicator measures dynamic pressure, which is related to air density", "Stall speed is set by the aircraft manufacturer", "True airspeed equals indicated airspeed at all altitudes"],
+        ans: 1,
+        exp: "The ASI is calibrated to read dynamic pressure (½ρV²). Since lift depends on the same factor, the IAS at which the wing reaches critical AOA stays constant regardless of altitude."
+      },
+      {
+        q: "VS0 (lower limit of the white arc) represents:",
+        opts: ["Stall speed in the clean (flaps and gear up) configuration", "Stall speed in the landing configuration (full flaps and gear down)", "Maximum flap extended speed", "Best glide speed"],
+        ans: 1,
+        exp: "VS0 is the power-off stall speed in the LANDING configuration (flaps and gear fully extended). It defines the LOWER end of the white arc. VS1 (lower green arc) is clean stall speed."
+      },
+      {
+        q: "If an airplane's published stall speed is 50 kt, what is its stall speed at 4 G's?",
+        opts: ["50 kt", "100 kt", "200 kt", "25 kt"],
+        ans: 1,
+        exp: "Stall speed increases with the SQUARE ROOT of load factor. √4 = 2, so 50 × 2 = 100 kt. This is why steeper banks (higher load factors) in level turns dramatically raise stall speed."
+      },
+      {
+        q: "An aft CG affects stall recovery how?",
+        opts: ["Makes recovery easier due to greater nose-down tendency", "Makes recovery harder; may lead to a flat spin from which recovery is impossible", "Has no effect on stall recovery", "Allows recovery only with full power"],
+        ans: 1,
+        exp: "Aft CG reduces the natural nose-down pitching tendency that aids stall recovery. Extreme aft CG can lead to a flat spin, from which recovery may be impossible."
+      },
+      {
+        q: "Frost on the wings prior to takeoff is dangerous because it:",
+        opts: ["Adds significant weight to the aircraft", "Disrupts smooth airflow, increases drag, and increases stall speed", "Causes the wing to freeze in place", "Has no significant effect"],
+        ans: 1,
+        exp: "Even thin layers of frost disrupt the smooth airflow over the wing, increasing drag and the stall speed. NEVER take off with frost, ice, or snow on the wings."
+      },
+      {
+        q: "During a power-off stall recovery, the FIRST action should be to:",
+        opts: ["Add full power", "Reduce the angle of attack by releasing back pressure", "Raise the nose to gain altitude", "Apply opposite rudder"],
+        ans: 1,
+        exp: "The PRIMARY cause of a stall is excessive AOA. Always REDUCE AOA first by releasing back pressure or pushing forward. Then add max allowable power smoothly."
+      },
+      {
+        q: "What is required for an airplane to enter a spin?",
+        opts: ["Only one wing must be stalled", "BOTH wings must be stalled, with one wing more stalled than the other", "The engine must fail", "Excessive bank angle alone"],
+        ans: 1,
+        exp: "Both wings must first be stalled. Then if the airplane yaws, one wing becomes less stalled than the other → autorotation begins → spin develops."
+      },
+      {
+        q: "The PARE spin recovery procedure stands for:",
+        opts: ["Pitch, Aileron, Rudder, Elevator", "Power, Aileron, Rudder, Elevator", "Power, Attitude, Rate, Engine", "Pitch, Altitude, Rate, Energy"],
+        ans: 1,
+        exp: "PARE: Power to idle, Ailerons to neutral, Rudder opposite the spin rotation, Elevator forward of neutral. (Always use POH-specific procedure if available.)"
+      },
+      {
+        q: "Ground effect is most pronounced when the aircraft is within how high?",
+        opts: ["Within one wingspan above the surface", "Within 100 ft AGL", "Within 1,000 ft AGL", "Throughout the traffic pattern altitude"],
+        ans: 0,
+        exp: "Ground effect occurs within approximately one wingspan of the surface. Its effect on induced drag grows dramatically as the wing gets closer: ~1.4% at one wingspan, ~47.6% at 1/10 wingspan."
+      },
+      {
+        q: "On takeoff, a danger of ground effect is that:",
+        opts: ["The aircraft becomes uncontrollable in roll", "The aircraft may lift off below recommended airspeed and settle back when climbing out", "Engine power decreases substantially", "Flap effectiveness is reduced"],
+        ans: 1,
+        exp: "Reduced induced drag in ground effect can make the aircraft seem ready to fly below recommended takeoff speed. When climbing out of ground effect, the increased induced drag may cause the aircraft to settle back to the runway."
+      },
+      {
+        q: "What causes an airplane to TURN?",
+        opts: ["The rudder yawing the nose around", "The horizontal component of lift when the wings are banked", "Differential aileron deflection alone", "Engine torque combined with rudder input"],
+        ans: 1,
+        exp: "Banking divides total lift into vertical and horizontal components. The HORIZONTAL component pulls the aircraft into the turn against centrifugal force. Rudder controls yaw, not the turn itself."
+      },
+      {
+        q: "To maintain altitude in a level turn, the pilot must:",
+        opts: ["Reduce back pressure", "Add back pressure and/or increase power to maintain total lift", "Reduce power and trim nose-down", "Lower the flaps"],
+        ans: 1,
+        exp: "In a bank, vertical lift component decreases. To maintain altitude, the pilot must INCREASE total lift by adding back pressure (higher AOA) and/or adding power."
+      },
+      {
+        q: "Positive STATIC stability is best illustrated by:",
+        opts: ["A ball on a flat level surface", "A ball at the bottom of a bowl", "A ball on top of an inverted bowl", "A ball rolling down a ramp"],
+        ans: 1,
+        exp: "Positive static stability — initial tendency to RETURN to original position. Illustrated by a ball that rolls back to the bottom of a bowl when displaced."
+      },
+      {
+        q: "Positive longitudinal stability requires that the center of lift be:",
+        opts: ["At the same point as the center of gravity", "FORWARD of the center of gravity", "AFT of the center of gravity (so a forward CG creates nose-down tendency)", "Above the center of gravity"],
+        ans: 2,
+        exp: "Positive longitudinal stability when CL is BEHIND CG. Most aircraft have CG slightly forward of CL — creating a nose-down tendency that's offset by the tail's downward force (an inverted airfoil)."
+      },
+      {
+        q: "Which provides lateral stability through dihedral effect?",
+        opts: ["When the lower wing in a sideslip experiences a greater AOA, restoring level flight", "When dihedral angles cause higher wingtip lift in all conditions", "When the rudder counteracts adverse yaw", "When the vertical stabilizer aligns the aircraft with the wind"],
+        ans: 0,
+        exp: "When the aircraft sideslips toward a lowered wing, the lower wing meets the relative wind at a greater AOA → more lift on that wing → restores level flight."
+      },
+      {
+        q: "Dutch roll is characterized by:",
+        opts: ["A pure roll with no yaw component", "Combination rolling/yawing oscillation in turbulent air, with roll preceding yaw", "A spiral instability with increasing bank", "A flat spin tendency"],
+        ans: 1,
+        exp: "Dutch roll: oscillating roll/yaw caused by strong dihedral effect overshooting wings-level. Roll precedes yaw and is more noticeable. Designers often increase directional stability to suppress it."
+      },
+      {
+        q: "Spiral instability develops when:",
+        opts: ["Lateral stability is much stronger than directional stability", "Directional stability is much stronger than lateral stability", "Both stabilities are perfectly balanced", "The aircraft is in inverted flight"],
+        ans: 1,
+        exp: "When directional stability exceeds lateral stability, a sideslip causes the aircraft to yaw back into the wind quickly while bank persists. Outside wing gains lift → bank steepens → slow spiral descent."
+      },
+      {
+        q: "Which four factors create the left-turning tendency in single-engine propeller airplanes?",
+        opts: ["Engine vibration, prop wash, wing dihedral, sweepback", "Torque reaction, corkscrewing slipstream, gyroscopic precession, P-factor", "Adverse yaw, parasite drag, induced drag, ground effect", "Bernoulli effect, Newton's 3rd law, gyroscopic effect, slipstream"],
+        ans: 1,
+        exp: "Four elements of left-turning tendency: (1) Torque reaction (Newton's 3rd), (2) Corkscrewing slipstream (strikes left of vertical stabilizer), (3) Gyroscopic precession, (4) P-factor (asymmetric prop loading at high AOA)."
+      },
+      {
+        q: "Left-turning tendency is GREATEST during:",
+        opts: ["Cruise flight at high altitude", "Takeoff and climb (high power, low airspeed, high AOA)", "Approach to landing with idle power", "Steep level turns"],
+        ans: 1,
+        exp: "All four left-turning tendencies are strongest at high power + low airspeed + high AOA — exactly the conditions during takeoff and climb. Substantial RIGHT RUDDER is needed to track straight."
+      },
+      {
+        q: "P-factor causes a yaw to the LEFT because at high AOA, the:",
+        opts: ["Propeller is rotating clockwise viewed from the rear", "Descending blade on the right has a higher effective AOA, producing more thrust", "Slipstream wraps around the fuselage", "Gyroscopic precession yaws the nose left"],
+        ans: 1,
+        exp: "At high AOA, the descending blade (right side viewed from rear) has a greater effective AOA than the ascending blade. More thrust on the right side pulls the nose to the LEFT."
+      },
+      {
+        q: "Gyroscopic precession in a rotating propeller:",
+        opts: ["Causes the propeller to spin faster", "Produces a reaction 90° AHEAD in the direction of rotation when force is applied", "Causes the propeller to wobble in flight", "Eliminates vibration from the engine"],
+        ans: 1,
+        exp: "Gyroscopic precession: a force applied to a spinning gyro produces an effect 90° ahead in the direction of rotation. Most noticeable in tailwheel aircraft when the tail rises on takeoff (yaws the nose left)."
+      },
+      {
+        q: "Most airplanes (except T-tail designs) tend to pitch DOWN when power is reduced because:",
+        opts: ["The elevator becomes less effective", "Reduced propeller slipstream decreases the downwash on the elevator, reducing tail-down force", "The CG shifts forward when fuel burns", "Air density changes around the tail"],
+        ans: 1,
+        exp: "Conventional designs rely on propeller slipstream creating downwash on the elevator/horizontal stabilizer. Reduced power = less downwash = less tail-down force = nose drops."
+      },
+      {
+        q: "The angle of attack at which a wing stalls is approximately:",
+        opts: ["5° to 10°", "18° to 20° on most airfoils", "30° to 35°", "Zero degrees"],
+        ans: 1,
+        exp: "Critical AOA is typically 18° to 20° on most airfoils. Beyond this angle, the airflow separates from the upper surface, lift drops dramatically, and the wing stalls."
+      },
+      {
+        q: "Washout (the wing tip having less incidence than the root) is designed so that:",
+        opts: ["The wing tips stall before the wing roots", "The wing roots stall before the wing tips, preserving aileron control", "Roll authority is increased at low speed", "Cruise drag is reduced"],
+        ans: 1,
+        exp: "Washout makes the wing roots reach critical AOA first. The wing tips (where ailerons are) remain unstalled longer, preserving roll control through the stall."
+      },
+      {
+        q: "Lift is generated by an airfoil due to:",
+        opts: ["Only Bernoulli's principle", "Only Newton's 3rd law", "Both Bernoulli's principle (pressure differential) AND Newton's 3rd law (downwash reaction)", "Centripetal force"],
+        ans: 2,
+        exp: "Lift is the combined effect: Bernoulli's principle creates lower pressure over the curved upper surface, and Newton's 3rd law produces an upward reaction force as the wing deflects air downward."
+      },
+      {
+        q: "When viewed from BEHIND the airplane, the wingtip vortex on the LEFT wing rotates:",
+        opts: ["Clockwise", "Counterclockwise", "It does not rotate", "Vertically only"],
+        ans: 0,
+        exp: "From behind: the LEFT wingtip vortex rotates CLOCKWISE; the RIGHT wingtip rotates COUNTERCLOCKWISE. Both spiral inward and upward beyond the wingtip."
+      },
+      {
+        q: "Which form of parasite drag is MOST DIFFICULT to reduce?",
+        opts: ["Form drag", "Skin friction", "Interference drag", "Induced drag"],
+        ans: 1,
+        exp: "Skin friction is hardest to reduce — no surface is perfectly smooth, even when machined. Minimized by glossy/flat finishes, eliminating protruding rivets, keeping the aircraft clean and waxed."
+      },
+      {
+        q: "Interference drag is caused by:",
+        opts: ["Frontal area of components", "Microscopic roughness on surfaces", "Airflow interference at intersections of aircraft components (wing/fuselage)", "Pilot deflection of control surfaces"],
+        ans: 2,
+        exp: "Interference drag arises where adjacent components meet (wing/fuselage, tail/fuselage). Fairings smooth these intersections to reduce drag."
       },
     ]
   },
