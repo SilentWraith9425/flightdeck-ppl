@@ -69,7 +69,7 @@ To add questions to a study guide:
 4. Use `mcp__claude_ai_Google_Drive__read_file_content` with the `driveId` to pull content from the Gleim PDFs
 
 ## Deployment
-- **GitHub repo**: `flightdeck-ppl` (github.com/FirstEpochMP/flightdeck-ppl)
+- **GitHub repo**: `flightdeck-ppl` (github.com/SilentWraith9425/flightdeck-ppl)
 - **Netlify**: Connected to GitHub repo via Netlify dashboard
   - Publish directory: `.` (root)
   - Build command: (none)
