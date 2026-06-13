@@ -504,82 +504,483 @@ const STUDY_GUIDES = [
     title: "Airplane Instruments, Engines, and Systems",
     stage: 1,
     icon: "⊙",
-    description: "Pitot-static instruments, gyroscopic instruments, compass errors, engines, and systems.",
+    description: "Compass, pitot-static, airspeed indicator and all V-speeds, altimeter and altitude types, gyroscopic instruments, engine systems, propellers, ignition, fuel/air mixture, carburetor icing, and electrical systems.",
     driveId: "1VTKorUT505EkZK3Pb_SoTf97hP0C19Lz",
     flashcards: [
-      { front: "What instruments use the pitot-static system?", back: "Airspeed Indicator (ASI), Altimeter, and Vertical Speed Indicator (VSI). The ASI uses both pitot and static; the altimeter and VSI use static only." },
-      { front: "What is compass deviation?", back: "The error caused by local magnetic fields within the aircraft (wiring, avionics, structural steel) deflecting the compass needle from true magnetic north. Changes with heading; recorded on the compass correction card." },
-      { front: "What are compass northerly turning errors?", back: "When turning through NORTH, the compass LAGS (undershoots). When turning through SOUTH, the compass LEADS (overshoots). Remember: NOSE — North Overshoot, South Exceed (lead past south, lag at north)." },
-      { front: "What is the acceleration/deceleration compass error? (ANDS)", back: "ANDS: Accelerate North, Decelerate South. On an easterly or westerly heading, acceleration causes the compass to show a turn toward north; deceleration shows a turn toward south." },
-      { front: "What are the three gyroscopic instruments?", back: "Attitude Indicator (AI) — pitch and bank. Heading Indicator (HI) — directional gyro. Turn Coordinator / Turn and Slip — rate of turn and coordination." },
-      { front: "Why must the heading indicator be periodically realigned?", back: "The gyroscope precesses (drifts) due to mechanical friction and the Earth's rotation. Realign with the magnetic compass every 15 minutes during straight-and-level, unaccelerated flight." },
-      { front: "What causes carburetor icing and when is it most likely?", back: "Fuel vaporization and the venturi effect drop carburetor temperature 40-70°F below ambient. Most likely between 20°F and 70°F with high humidity — even on a clear day." },
-      { front: "Effect of a blocked pitot tube (static open):", back: "ASI freezes at the reading when blocked. At higher altitude, ASI may read higher (less static pressure inside, same trapped pitot). Altimeter and VSI still function normally." },
-      { front: "Effect of a blocked static port:", back: "Altimeter freezes. VSI shows zero. ASI becomes unreliable. Use alternate static source (cockpit air) — note: instruments will show slight errors (altimeter reads slightly high, ASI reads slightly fast)." },
-      { front: "What is gyroscopic precession?", back: "A force applied to a spinning gyroscope results in a reaction 90° ahead in the direction of rotation. Causes HI drift; also creates flight forces during maneuvers with a spinning propeller." },
-      { front: "What does a magneto system do?", back: "Generates high-voltage electrical current to fire spark plugs. Aircraft have dual magnetos (left and right) for redundancy. Self-contained; does NOT require the aircraft's electrical system." },
-      { front: "What is carburetor heat?", back: "Routes heated air from around the exhaust into the carburetor to melt ice and prevent formation. Temporarily reduces power (hot air is less dense). Use at full heat — partial heat can worsen icing." },
+      { front: "The magnetic compass is:", back: "The ONLY self-contained direction-seeking instrument in the airplane. Used primarily to set the heading indicator and verify HI accuracy in flight." },
+      { front: "Magnetic compass float chamber contents:", back: "Sealed chamber filled with WHITE KEROSENE. Decreases oscillations, lubricates the pivot, and provides buoyancy to take weight off the pivot." },
+      { front: "Maximum compass card tilt angle:", back: "Up to 18°. Beyond this, the float assembly hits its mechanical limits." },
+      { front: "Compass card markings:", back: "Cardinal letters (N, E, S, W). Each 30° interval represented by a number with the last zero omitted (e.g., 30° = 3, 300° = 30). Graduated for each 5° between numbers." },
+      { front: "What is compass deviation?", back: "Difference between the heading indicated by the magnetic compass and the airplane's actual magnetic heading. Caused by LOCAL magnetic fields in the airplane (wiring, structure, magnetized parts). Depends on heading and electrical equipment in use." },
+      { front: "Where are remaining deviation errors recorded?", back: "On the COMPASS CORRECTION CARD (compass deviation card) mounted in the airplane near the magnetic compass. Used to correct headings for accurate compass steering." },
+      { front: "When is the magnetic compass considered accurate in flight?",  back: "ONLY during straight-and-level flight at a CONSTANT AIRSPEED. Turns, accelerations, and decelerations all cause errors." },
+      { front: "What is magnetic dip error?", back: "Compass needles tend to point DOWN as well as toward the magnetic pole. Greatest at the poles, ZERO at the magnetic equator. Causes acceleration and turning errors due to the pendulous compass card." },
+      { front: "Acceleration/deceleration error — ANDS:", back: "On EAST or WEST headings (Northern Hemisphere): Accelerate → compass indicates turn toward NORTH. Decelerate → compass indicates turn toward SOUTH. Does NOT occur on N or S headings." },
+      { front: "Compass northerly turning error (NH):", back: "When turning FROM a north heading: compass LAGS (or initially indicates opposite). When turning TO a northerly heading: compass LAGS — roll out BEFORE reaching desired heading." },
+      { front: "Compass southerly turning error (NH):", back: "When turning FROM a south heading: compass LEADS (shows MORE turn than actual). When turning TO a southerly heading: compass LEADS — roll out AFTER passing desired heading." },
+      { front: "Turning correction rule of thumb (turning to N or S):", back: "Stop turn 15° plus HALF THE LATITUDE before/after the target heading. At 40° latitude: 15 + 20 = 35° lead/lag. Lead for North; Lag (overshoot) for South." },
+      { front: "UNOS memory aid:", back: "Undershoot North, Overshoot South. When turning TO a northern heading, stop turn EARLY. When turning TO a southern heading, stop turn LATE (after passing)." },
+      { front: "Are compass turning errors present on E or W headings?", back: "NO. Turning errors only become evident when turning TO/FROM north or south. Compass works normally entering a turn on E or W headings." },
+      { front: "Magnetic variation:", back: "Angular difference between TRUE NORTH and MAGNETIC NORTH. Varies with geographic location. The compass points to magnetic north, but charts use true north." },
+      { front: "Isogonic lines vs agonic line:", back: "ISOGONIC lines connect points of EQUAL magnetic variation (plotted in degrees east or west on aeronautical charts). The AGONIC line connects points of ZERO variation." },
+      { front: "Pitot-static system supplies pressure to which three instruments?", back: "1) ALTIMETER (static only). 2) Vertical Speed Indicator/VSI (static only). 3) AIRSPEED INDICATOR (both pitot AND static)." },
+      { front: "Static pressure source location:", back: "Usually from static line attached to vent(s) mounted FLUSH with the side of the fuselage. Some airplanes have static source on the back of the pitot tube." },
+      { front: "Pitot pressure (ram/impact/total pressure) source:", back: "Pitot tube — normally mounted on or beneath the LEADING EDGE of the LEFT WING, aligned with the relative wind. Provides ram pressure for the airspeed indicator ONLY." },
+      { front: "Effect of clogged pitot tube only (static clear):", back: "Only the airspeed indicator becomes inoperative/inaccurate. Altimeter and VSI continue to function." },
+      { front: "Effect of clogged static system, pitot clear:", back: "ASI continues to function but inaccurately. Reads LOWER than actual when ABOVE the altitude where blockage occurred (trapped static is higher pressure). Reads HIGHER when BELOW that altitude." },
+      { front: "Alternate static source effect on instruments:", back: "Alternate source typically vented inside cabin (lower pressure than outside due to venturi effect). Altimeter reads HIGHER than actual. VSI initially indicates a CLIMB, then levels. ASI reads GREATER than actual." },
+      { front: "What is dynamic pressure (in airspeed measurement)?", back: "The DIFFERENCE between total pressure (from pitot) and static pressure. The ASI is a differential air pressure instrument measuring this difference. Pitot connects to one side of a diaphragm, static to the other." },
+      { front: "ASI white arc — what does it represent?", back: "FLAP OPERATING RANGE. Lower limit = VS0 (power-off stall speed, landing config). Upper limit = VFE (max flaps-extended speed)." },
+      { front: "ASI green arc — what does it represent?", back: "NORMAL OPERATING RANGE. Lower limit = VS1 (power-off stall, clean configuration). Upper limit = VNO (max structural cruising speed)." },
+      { front: "ASI yellow arc — what does it represent?", back: "CAUTION RANGE. From VNO to VNE. Operate at these speeds ONLY in smooth air with caution." },
+      { front: "ASI red line — what does it represent?", back: "VNE — Never-Exceed Speed. Maximum speed at which airplane can be operated safely. Never exceed intentionally — risk of structural damage or failure." },
+      { front: "VS0 definition:", back: "Power-off stalling speed (minimum steady flight speed) in the LANDING CONFIGURATION — flaps and landing gear extended, at maximum landing weight." },
+      { front: "VS1 definition:", back: "Power-off stalling speed (or minimum steady flight speed) obtained in a SPECIFIED CONFIGURATION — typically with flaps and gear RETRACTED at max takeoff weight." },
+      { front: "VFE definition:", back: "Maximum FLAPS-EXTENDED speed. Upper limit of the white arc. Exceeding may cause severe strain or structural failure of the flaps." },
+      { front: "VNO definition:", back: "Maximum structural CRUISING speed. Upper limit of green arc. Should not be exceeded except in smooth air, with caution." },
+      { front: "VNE definition:", back: "Never-exceed speed. Red radial line on the ASI. Operating above this can cause structural damage or failure." },
+      { front: "VA — design maneuvering speed:", back: "Speed at or below which a single full deflection of one flight control (one axis only) in smooth air will NOT damage the airplane. Used in rough air. Varies with GROSS WEIGHT. Maximum speed at which the airplane may be stalled safely." },
+      { front: "VG definition:", back: "Best GLIDE speed — provides best L/D ratio (L/D MAX) angle of attack in a power-off glide. Aircraft will glide the farthest at this speed." },
+      { front: "VH definition:", back: "Maximum continuous POWER speed." },
+      { front: "VLE definition:", back: "Maximum LANDING GEAR EXTENDED speed. Maximum airspeed at which the airplane can be flown with the landing gear extended." },
+      { front: "VLO definition:", back: "Maximum LANDING GEAR OPERATING speed. Maximum speed for EXTENDING or RETRACTING the landing gear." },
+      { front: "VR definition:", back: "Rotation speed. The speed at which the pilot rotates the aircraft for takeoff." },
+      { front: "VX definition:", back: "Best ANGLE of climb speed. Provides most ALTITUDE per DISTANCE — used for short-field takeoffs to clear obstacles." },
+      { front: "VY definition:", back: "Best RATE of climb speed. Provides most ALTITUDE per TIME — used to gain altitude quickly." },
+      { front: "Indicated airspeed (IAS):", back: "Direct ASI reading. NOT corrected for air density, installation, or instrument errors. Used by POH/AFM, FARs, and ATC for speed limitations." },
+      { front: "Calibrated airspeed (CAS):", back: "IAS CORRECTED for installation (position) and instrument errors. Static port disturbance and pitot tube misalignment at varying AOA cause errors that CAS corrects." },
+      { front: "True airspeed (TAS):", back: "CAS corrected for density altitude — the actual speed through the air. For a given TAS, IAS decreases as altitude increases. For a given IAS, TAS increases with altitude." },
+      { front: "Rule of thumb for approximating TAS:", back: "Add 2% to IAS for each 1,000 ft of altitude. EXAMPLE: 140 kt IAS at 6,000 ft → 140 × 1.12 = ~157 kt TAS." },
+      { front: "Altimeter principle of operation:", back: "Aneroid (mechanical) barometer measuring atmospheric pressure. Uses STATIC pressure. A stack of aneroid wafers expands/contracts with pressure changes, driving pointers through a gear train." },
+      { front: "Altimeter — three pointers:", back: "1) 10,000-ft (short needle, often with triangular tip). 2) 1,000-ft (medium needle). 3) 100-ft (long needle)." },
+      { front: "What is the Kollsman window?", back: "The small window on the altimeter face displaying the barometric pressure SETTING (in. Hg). Adjusted with the setting knob on the lower-LEFT corner of the instrument." },
+      { front: "ISA values at sea level:", back: "Temperature: 15°C (59°F). Pressure: 29.92\" Hg (1,013.2 hPa)." },
+      { front: "Absolute altitude:", back: "Height of the aircraft ABOVE THE TERRAIN. Expressed in feet AGL (above ground level)." },
+      { front: "True altitude:", back: "Actual height ABOVE MEAN SEA LEVEL (MSL). Used for airport, terrain, and obstacle elevations on aeronautical charts. Not affected by atmospheric conditions." },
+      { front: "Indicated altitude:", back: "Read directly from the altimeter with the local altimeter setting. Approximates true altitude. Used by all aircraft BELOW 18,000 ft MSL." },
+      { front: "Pressure altitude:", back: "Height above the standard datum plane of 29.92\" Hg. The indicated altitude when altimeter is set to 29.92. Equals true altitude under standard atmospheric conditions. Used AT OR ABOVE 18,000 ft MSL (FL180+)." },
+      { front: "Density altitude:", back: "Pressure altitude corrected for NONSTANDARD temperature. Equals pressure altitude when temperature is standard. Higher than PA when warmer than standard; lower when colder." },
+      { front: "What is a Flight Level (FL)?", back: "Altitude at or above 18,000 ft MSL with altimeter set to 29.92. Remove last two zeros from altitude → FL. 19,000 ft = FL190. 35,000 ft = FL350." },
+      { front: "Indicated altitude rate of change with altimeter setting:", back: "Approximately 1,000 ft per 1\" Hg change. EXAMPLE: Changing setting from 29.15 to 29.85 = 0.70 in increase → indicated altitude rises by ~700 ft." },
+      { front: "FAR altimeter setting rules below 18,000 ft MSL:", back: "Use the current altimeter setting from a station along the route of flight WITHIN 100 NM. If none available, use an appropriate station. Without radio: set to departure airport elevation." },
+      { front: "Altimeter setting at/above 18,000 ft MSL:", back: "Set to 29.92\" Hg. All aircraft in this airspace fly Flight Levels using the same reference." },
+      { front: "Altimeter error — warm/cold temperature memory aid:", back: "'From HIGH to LOW (temp or pressure), look out BELOW' — actual altitude is LOWER than indicated, terrain closer. 'Low to high, clear the sky.' Altimeters do NOT correct for temperature." },
+      { front: "Flying from high pressure to low pressure without resetting:", back: "Actual altitude will be LOWER than indicated. DANGEROUS for terrain clearance — 'look out below.'" },
+      { front: "Flying from low to high pressure without resetting:", back: "Actual altitude will be HIGHER than indicated. Safer for terrain but may bust an assigned altitude." },
+      { front: "High mountainous terrain — possible altimeter error:", back: "Certain atmospheric conditions can cause the altimeter to indicate 1,000 ft OR MORE higher than the actual altitude. Allow generous altitude margins; watch for downdrafts in high winds." },
+      { front: "Two fundamental gyroscopic properties:", back: "1) RIGIDITY in space — gyro maintains its plane of rotation (Newton's 1st law). 2) PRECESSION — applied force creates reaction 90° AHEAD in direction of rotation." },
+      { front: "Gyroscopic instrument power sources:", back: "Vacuum system: typically powers Attitude Indicator (AI) and Heading Indicator (HI). Electrical system: typically powers the Turn Coordinator/Turn Indicator." },
+      { front: "Which gyroscopic property does each instrument use?", back: "AI and HI use RIGIDITY in space (universally mounted). Turn Coordinator uses PRECESSION." },
+      { front: "Attitude Indicator (AI) operation:", back: "Gyro mounted on horizontal plane uses rigidity in space. Horizon bar remains in horizontal plane as airplane pitches and banks. Most realistic instrument; reference often in restricted visibility." },
+      { front: "AI pitch and bank limits:", back: "Typical limits: 60° to 70° pitch; 100° to 110° bank. Exceeding these causes the AI to 'tumble' or 'spill'." },
+      { front: "AI 'PULL TO CAGE' function:", back: "Locks gimbal bearings. Prevents gyro damage during unusual attitudes. Can also re-erect the gyro/counter precession in straight-and-level flight. Caged AI shows wings-level, nose-on-horizon." },
+      { front: "Turn Coordinator (TC) — what it shows:", back: "Indicates RATE and DIRECTION of turn AND rate of ROLL (gimbal axis tilted up 30°). Inclinometer shows quality of turn (coordination). Does NOT directly show bank angle." },
+      { front: "Standard-rate turn:", back: "3° per second. Completes a 360° turn in 2 minutes. Indicated when the TC wing tip is aligned with the standard rate marker." },
+      { front: "Inclinometer (ball) — interpretation:", back: "Ball centered = coordinated. Ball to OUTSIDE of turn = SKID (too much rudder; too steep rate of turn for bank). Ball to INSIDE of turn = SLIP (too little rudder; not enough rate of turn for bank). Rule: 'Step on the ball.'" },
+      { front: "Correcting a SKID:", back: "Rate of turn is too great for the angle of bank. Either increase bank, decrease rudder pressure to center the ball, or both." },
+      { front: "Correcting a SLIP:", back: "Rate of turn too slow for the angle of bank. Either decrease bank, apply more rudder, or both." },
+      { front: "Turn-and-Slip Indicator (T&SI) — vs TC:", back: "T&SI uses a NEEDLE (no miniature airplane). Indicates only RATE OF TURN about vertical (yaw) axis — NOT rate of roll like the TC." },
+      { front: "Heading Indicator (HI) operation:", back: "Uses RIGIDITY in space. Rotor spins in vertical plane with compass card fixed to it. Card remains rigid as airplane revolves around vertical axis. NOT affected by compass errors." },
+      { front: "HI realignment interval:", back: "Every 15 MINUTES during straight-and-level flight (due to precession from bearing friction or improper vacuum pressure)." },
+      { front: "Typical HI pitch/bank limits:", back: "Approximately 55° pitch and 55° bank. Exceeded → instrument tumbles/spills; heading card spins rapidly. Some HIs are designed not to tumble." },
+      { front: "Vacuum system components:", back: "Engine-driven vacuum pump, vacuum relief valve, air filter, tubing and manifolds. Suction gauge on instrument panel shows vacuum level. Some have low-vacuum warning light." },
+      { front: "Glass panel: PFD vs MFD:", back: "PFD (Primary Flight Display): integrates all flight instruments critical to safe flight. MFD (Multi-Function Display): adds moving map, weather, system status, traffic/terrain warnings, fuel mgmt." },
+      { front: "Air Data Computer (ADC):", back: "Receives pitot and static inputs, computes the pressure differential, and generates airspeed, altitude, and vertical speed for display on the PFD." },
+      { front: "Attitude and Heading Reference System (AHRS):", back: "Replaces free-spinning mechanical gyros with SOLID-STATE LASER systems. No tumbling, can fly any attitude. Sends attitude information to PFD. Heading derived from a MAGNETOMETER." },
+      { front: "Four basic functions of engine oil:", back: "1) LUBRICATE — maintain film between moving surfaces. 2) SEAL — between cylinder walls and piston rings; prevents combustion gas blow-by. 3) CLEAN — carries off metal, carbon, contaminants. 4) COOL — carries heat away from hot engine parts (most important)." },
+      { front: "Causes of excessive engine temperatures:", back: "1) Operating with too MUCH power. 2) Climbing too STEEPLY (too low airspeed) in hot weather. 3) Using LOWER octane fuel than specified. 4) Operating too LEAN. 5) Oil level TOO LOW." },
+      { front: "Effects of excessively high engine temperature:", back: "Loss of power, excessive oil consumption, accelerated internal wear. Can lead to detonation, scoring of cylinder walls, damaged pistons/rings, burned/warped valves." },
+      { front: "Oil pressure gauge — significance of low oil pressure:", back: "Low oil pressure indicates mechanical problem or inadequate oil supply. Requires IMMEDIATE LANDING." },
+      { front: "What is the Cylinder Head Temperature (CHT) gauge?", back: "Provides DIRECT and IMMEDIATE indication of engine temperature changes. Red line = max allowable temp. Yellow arc = caution. To reduce CHT: open cowl flaps, increase airspeed, enrich mixture, or reduce power." },
+      { front: "What are cowl flaps?", back: "Hinged covers over engine cooling air outlet(s). OPEN cowl flaps = more cooling (low-airspeed/high-power ops like takeoff/climb). CLOSED = less cooling (cruise/descent). Restricting flow INCREASES engine temp." },
+      { front: "Constant-speed propeller — what is the propeller control?", back: "Controls the propeller GOVERNOR, which regulates BLADE PITCH ANGLE to maintain a CONSTANT RPM regardless of power changes. Registered on the TACHOMETER." },
+      { front: "Constant-speed propeller — what does the throttle control?", back: "Controls POWER OUTPUT (manifold pressure). Registered on the MANIFOLD PRESSURE (MP) gauge in inches of mercury (in. Hg)." },
+      { front: "Manifold Pressure (MP) gauge:", back: "Simple barometer measuring air pressure in the engine intake manifold in inches of mercury. Higher MP = more power being developed by the engine." },
+      { front: "Common rule: high MP + low RPM:", back: "AVOID this combination. Can over-stress cylinders. Always reduce MP before reducing RPM, and increase RPM before increasing MP. Consult POH/AFM for approved combinations." },
+      { front: "Propeller pitch settings on takeoff vs cruise:", back: "Takeoff: LOW pitch, HIGH RPM — maximum power. Cruise: HIGHER pitch, LOWER RPM — propeller takes a 'larger bite' for efficiency at speed." },
+      { front: "Propeller slip definition:", back: "Difference between GEOMETRIC pitch (theoretical advance in one revolution if rotated in a solid) and EFFECTIVE pitch (actual forward distance per revolution)." },
+      { front: "Propeller efficiency range:", back: "50% to 87%, depending on slippage. Most efficient at blade angles of attack between 1° and 4°." },
+      { front: "Why is a propeller blade twisted?", back: "Outer parts of the blade travel FASTER than the hub (rotating around central point). Without twist, the outer portion would stall while the inner could have negative AOA. Twist maintains constant AOA along length." },
+      { front: "Fixed-pitch propeller — how is RPM controlled?", back: "By the THROTTLE only (direct relationship to RPM, registered on the tachometer). Designed for max efficiency at one specific RPM/airspeed combination." },
+      { front: "Magneto — what it does:", back: "Self-contained, engine-driven unit using a rotating magnet inside a coil to produce electrical current. Steps up voltage to fire spark plugs. Completely SEPARATE from the aircraft electrical system." },
+      { front: "Ignition switch — five positions:", back: "From left to right: OFF, R (right mag only), L (left mag only), BOTH (both mags), START (activates electric starter)." },
+      { front: "Why use BOTH magnetos in flight?", back: "(1) Both spark plugs in each cylinder fire → more even, complete combustion → improved performance. (2) Redundancy — if one mag fails, engine continues on the other." },
+      { front: "Hazard of broken/grounded magneto wire:", back: "If the ground (P-lead) is broken/disconnected, the magneto will supply current to the spark plugs EVEN WITH THE IGNITION SWITCH OFF. Moving the propeller could start the engine — TREAT EVERY PROPELLER AS LIVE." },
+      { front: "How to stop an engine if mag remains hot with switch off:", back: "Move the mixture control to IDLE CUT-OFF position. Then have the system checked by a qualified maintenance technician." },
+      { front: "Three types of induction system icing:", back: "1) IMPACT ice — moist air freezes on induction components at OAT ≤ 0°C. 2) THROTTLE ice — water vapor condenses/freezes at the partially closed throttle butterfly. 3) FUEL VAPORIZATION ice (carb icing) — fuel cooling + pressure drop causes ice in float-type carbs." },
+      { front: "When does impact ice build most rapidly?", back: "When ambient air temperature is approximately -4°C (25°F). Supercooled moisture is still in a liquid state. Affects both carbureted AND fuel-injected engines." },
+      { front: "Carburetor ice — temperature/humidity envelope:", back: "MOST LIKELY: OAT below 21°C (70°F) AND humidity above 80%. POSSIBLE: even at OAT as high as 38°C (100°F) and humidity as low as 50%, due to ~15°C (27°F) cooling in the carb venturi." },
+      { front: "Why does carburetor ice form?", back: "Vaporization of fuel + decreasing air pressure (Bernoulli) in the carb venturi → sudden cooling up to 15°C (27°F). If carb temp drops to 0°C (32°F) or below, moisture deposits as ice/frost." },
+      { front: "Carb icing — risk at LOW power settings:", back: "Low power = lower engine/engine bay temps. Icing can develop UNDETECTED until power is reapplied (e.g., leveling off from a descent), at which point the engine may not respond." },
+      { front: "First indication of carb icing — fixed-pitch propeller:", back: "Loss of RPM. Roughness may develop later." },
+      { front: "First indication of carb icing — constant-speed propeller:", back: "Drop in MANIFOLD PRESSURE (propeller governor adjusts pitch to maintain RPM, masking the symptom)." },
+      { front: "How does carburetor heat work?", back: "Routes heated air (warmed by exhaust) into the carburetor. Melts ice and prevents formation. Air is hotter and less dense → ENRICHES mixture and slightly reduces power." },
+      { front: "Carb heat application — rule:", back: "Use FULL ON when icing detected/expected. Leave on until certain all ice is removed. PARTIAL heat may worsen icing (raises induction temp into the icing range). DO NOT use during takeoff (max power needed)." },
+      { front: "Carb heat — what happens with fixed-pitch prop when applied if no ice:", back: "RPM DROPS slightly (hot air less dense). If ICE was present: initial RPM drop, then GRADUAL RPM INCREASE as ice melts." },
+      { front: "Mixture control — what does it do?", back: "Adjusts fuel/air ratio to compensate for varying air density at different altitudes. Maintains approximately 1:12 fuel-to-air ratio by weight for optimum power." },
+      { front: "Too-rich mixture symptoms:", back: "Excessive fuel consumption, rough engine operation, loss of power, below-normal cylinder temperatures, spark plug fouling." },
+      { front: "Too-lean mixture symptoms:", back: "Rough engine, detonation, overheating, loss of power." },
+      { front: "Why lean at altitude?", back: "Air density decreases with altitude. The carb meters fuel by VOLUME — but air WEIGHT decreases. Without leaning, the mixture becomes too rich. Lean to maintain proper fuel/air ratio." },
+      { front: "Exhaust Gas Temperature (EGT) gauge:", back: "Measures exhaust gas temperature at the exhaust manifold. Used to lean mixture precisely. Lean until EGT peaks, then enrich until EGT drops the manufacturer's recommended amount (typically 25-75°F). Can reduce fuel consumption ~10%." },
+      { front: "Four-stroke engine cycle:", back: "1) INTAKE — piston downward, intake valve open, fuel/air drawn in. 2) COMPRESSION — both valves closed, piston up, mixture compressed. 3) POWER — ignition, piston pushed down by combustion. 4) EXHAUST — exhaust valve open, piston up, gases expelled." },
+      { front: "Detonation:", back: "Fuel/air mixture EXPLODES instead of burning evenly. Caused by: (1) lower-than-specified octane fuel, OR (2) excessive engine temperatures. Damaging — causes wear, can warp pistons/valves." },
+      { front: "Pre-ignition:", back: "Uncontrolled firing of fuel/air mixture BEFORE the normal spark. Often follows detonation (which produces extreme heat). Causes severe structural stress on engine parts." },
+      { front: "Detonation recovery during takeoff climb:", back: "Lower the nose slightly to INCREASE airspeed → improves cooling and decreases engine workload. Verify carb heat off, mixture appropriate." },
+      { front: "Aviation fuel — 100LL designation:", back: "100 = anti-knock (octane) rating. LL = Low Lead. Higher grade = more compression without detonation = more power available. Color: BLUE for 100LL." },
+      { front: "Fuel grade — substitution rule:", back: "Using HIGHER-than-specified grade is BETTER than using LOWER-than-specified. Lower grade risks detonation and overheating. If accidentally mixed, fuels turn STRAW-COLORED." },
+      { front: "Why fill fuel tanks at end of day?", back: "Eliminates airspace in the tank → prevents moisture condensation overnight (which contributes to fuel contamination and microbial growth)." },
+      { front: "Pre-flight fuel check:", back: "Drain ALL fuel strainer drains and fuel tank sumps before each flight to check for water and contamination." },
+      { front: "Refueling fire prevention:", back: "Ground wire MUST be attached to airplane before fuel cap is removed. Nozzle grounded to airplane before and during refueling. Fuel truck also grounded to airplane and to ground. Prevents static spark ignition." },
+      { front: "Cold weather engine preheat:", back: "Recommended below 20°F by most manufacturers. Required below 0°F. Warms oil and cylinders, easing starting and preventing damage. Many cold-weather FBOs offer this service." },
+      { front: "After cold start — minimum idle time:", back: "2 to 5 minutes at low RPM to allow oil to warm and circulate before adding significant power. Cold thick oil doesn't lubricate properly." },
+      { front: "Flooded engine recovery:", back: "Mixture LEAN, throttle FULL OPEN, crank engine. Excess fuel will be cleared from cylinders." },
+      { front: "Typical electrical system voltage in light airplanes:", back: "12-volt battery with 14-volt direct-current alternator system. Or 24-volt battery with 28-volt system in larger aircraft. Alternator output is HIGHER than battery voltage to maintain charge." },
+      { front: "Basic electrical system components:", back: "Alternator/generator, battery, master/battery switch, bus bar (terminal), fuses/circuit breakers, voltage regulator, ammeter, associated wiring." },
+      { front: "Master switch function:", back: "Turns on the entire electrical system EXCEPT the ignition system (which is powered by magnetos). Some aircraft have separate master and alternator switches." },
+      { front: "Alternator vs generator advantage:", back: "Alternator produces sufficient current at LOW engine RPM (generator does not). Output more constant across RPM range. Alternators are lighter, cheaper to maintain, less prone to overload." },
+      { front: "What is a bus bar?", back: "A common terminal in the electrical system to connect the main system to equipment. Simplifies wiring and distributes voltage from a common point." },
+      { front: "Fuses vs circuit breakers:", back: "Both protect circuits from overload. FUSES are one-time replacements (spares should be carried). CIRCUIT BREAKERS can be MANUALLY RESET (push in). If breaker trips twice, do NOT reset — likely a short circuit; fire risk." },
+      { front: "Ammeter — center-zero — interpretation:", back: "POSITIVE reading = battery being CHARGED. NEGATIVE reading = current being DRAWN from battery (alternator failure or overload). Brief discharge during start is normal." },
+      { front: "Loadmeter (alternative to ammeter):", back: "Shows current coming from the alternator. Zero reading with electrical equipment in use = alternator failure (current from battery). Should show high reading briefly after start, then stabilize lower." },
+      { front: "Alternator over-voltage protection:", back: "Most airplanes have an over-voltage relay that trips the alternator offline if safe voltage limit is exceeded. Indicated by negative ammeter reading. Reset by cycling alternator master switch off then on." },
+      { front: "Hazard of starting with a dead battery using GPU:", back: "DO NOT do this. Electrical energy forced into dead battery causes overheating and possible EXPLOSION → damage to the airplane." },
     ],
     quiz: [
+      {
+        q: "The magnetic compass is described as:",
+        opts: ["The most accurate direction-finding instrument in the airplane", "The only SELF-CONTAINED direction-seeking instrument in the airplane", "Powered by the aircraft electrical system", "Used only as a backup to the GPS"],
+        ans: 1,
+        exp: "The magnetic compass is the only self-contained direction-seeking instrument — no electrical or vacuum power required. Primarily used to set/verify the heading indicator."
+      },
+      {
+        q: "Compass deviation is recorded on the:",
+        opts: ["Sectional chart", "Compass correction card mounted near the compass", "POH/AFM equipment list", "ATIS broadcast"],
+        ans: 1,
+        exp: "Remaining deviation errors after compass swinging are recorded on a compass correction card in the airplane near the magnetic compass."
+      },
+      {
+        q: "Magnetic dip error is:",
+        opts: ["Greatest at the magnetic equator", "Zero at the magnetic equator and greatest at the magnetic poles", "Caused by the aircraft's electrical system", "Eliminated by liquid in the compass"],
+        ans: 1,
+        exp: "Magnetic dip is the tendency of compass needles to point downward as well as toward the pole. The Earth's lines of force are horizontal at the equator (zero dip) and curve downward near the poles (greatest dip)."
+      },
+      {
+        q: "ANDS (acceleration/deceleration error) memory aid stands for:",
+        opts: ["Always North, Decelerate South", "Accelerate North, Decelerate South", "Above North, Decelerate South", "All North/South Deflections (any heading)"],
+        ans: 1,
+        exp: "ANDS: Accelerate → compass indicates turn toward NORTH. Decelerate → compass indicates turn toward SOUTH. Error occurs only on EAST or WEST headings, not on N/S."
+      },
+      {
+        q: "When TURNING TO a northerly heading at 40° N latitude, the pilot should roll out:",
+        opts: ["Exactly at the desired heading", "Approximately 35° BEFORE reaching the desired heading (UNOS — Undershoot North)", "Approximately 35° AFTER reaching the desired heading", "When the heading indicator and compass agree"],
+        ans: 1,
+        exp: "Compass LAGS turning to north. Rule of thumb: stop turn 15° + half latitude EARLY. At 40° latitude: 15 + 20 = 35° early. UNOS = Undershoot North."
+      },
+      {
+        q: "Isogonic lines on aeronautical charts indicate:",
+        opts: ["Lines of equal magnetic dip", "Lines connecting points of EQUAL magnetic variation", "Lines of zero magnetic variation only", "Lines of zero compass deviation"],
+        ans: 1,
+        exp: "Isogonic lines connect points of equal magnetic variation. The AGONIC line connects points of ZERO variation (where true north and magnetic north align)."
+      },
       {
         q: "Which instruments use the pitot-static system?",
         opts: ["Attitude indicator, heading indicator, turn coordinator", "Airspeed indicator, altimeter, vertical speed indicator", "Airspeed indicator, altimeter, attitude indicator", "Altimeter, turn coordinator, vertical speed indicator"],
         ans: 1,
-        exp: "The pitot-static system powers: ASI (pitot + static), Altimeter (static only), and VSI (static only). Gyroscopic instruments (AI, HI, TC) are powered by vacuum or electricity."
-      },
-      {
-        q: "Compass deviation error is caused by:",
-        opts: ["The difference between true north and magnetic north", "Local magnetic fields within the aircraft", "Turning through cardinal headings at speed", "Acceleration and deceleration on easterly/westerly headings"],
-        ans: 1,
-        exp: "Deviation is caused by magnetic disturbances inside the aircraft — wiring, avionics, steel structure. It varies with heading and is recorded on the compass correction card in the cockpit."
-      },
-      {
-        q: "Carburetor icing is most likely at an OAT of:",
-        opts: ["Below -10°C with very low humidity", "Between approximately -7°C (20°F) and 21°C (70°F) with high humidity", "Only above 30°C in hot weather", "Only in visible moisture (rain, clouds)"],
-        ans: 1,
-        exp: "Carburetor icing can form from 20°F to 70°F with high humidity. The venturi effect and fuel vaporization cool the carb throat 40-70°F below ambient — making icing possible on a clear, cool day."
-      },
-      {
-        q: "When turning from a southerly heading, the magnetic compass will:",
-        opts: ["Lag behind the turn", "Lead ahead of the turn (overshoot)", "Indicate correctly throughout the turn", "Stick at 180° during the turn"],
-        ans: 1,
-        exp: "Turning through south: the compass leads/overshoots — you must STOP the turn before 180° appears on the compass. Turning through north: compass lags — you overshoot past 360° before stopping."
+        exp: "Pitot-static powers: ASI (pitot + static), Altimeter (static only), VSI (static only). The pitot tube provides ram pressure for the ASI ONLY."
       },
       {
         q: "If the pitot tube becomes blocked but the static port remains open, the ASI will:",
-        opts: ["Read zero", "Freeze at the airspeed when blocked and may drift with altitude changes", "Fluctuate rapidly", "Continue to read accurately"],
+        opts: ["Read zero immediately", "Continue to function but inaccurately — freezing or drifting with altitude changes", "Show maximum airspeed", "Continue reading correctly"],
         ans: 1,
-        exp: "With a blocked pitot tube and open static port, the trapped pitot pressure doesn't change. As the aircraft climbs (lower static), the ASI may actually read higher than actual. The ASI essentially freezes and becomes unreliable."
+        exp: "The trapped pitot pressure doesn't change. As altitude varies, the ASI may drift but essentially freezes at the indication when the blockage occurred."
       },
       {
-        q: "Why do aircraft engines have dual magnetos?",
-        opts: ["To increase horsepower output", "For redundancy — engine operates on either magneto alone", "To power the aircraft's avionics", "To reduce carburetor icing risk"],
-        ans: 1,
-        exp: "Each magneto fires one spark plug per cylinder. If one magneto fails, the engine continues on the other (with slight power reduction). During run-up, each is tested separately to confirm independent operation."
+        q: "If the STATIC SYSTEM is blocked with pitot tube clear, the ASI will read:",
+        opts: ["Lower than actual when ABOVE the altitude where blockage occurred", "Higher than actual when below the altitude where blockage occurred", "Both A and B", "Correctly at all altitudes"],
+        ans: 2,
+        exp: "Blocked static traps a pressure. Above blockage altitude: trapped static higher than ambient → ASI reads LOW. Below blockage altitude: trapped static lower than ambient → ASI reads HIGH."
       },
       {
-        q: "The alternate static source in most unpressurized aircraft draws air from:",
-        opts: ["A separate outside static port", "Inside the cockpit", "The pitot tube", "An oxygen system port"],
+        q: "When using the ALTERNATE STATIC SOURCE in flight, the altimeter will typically:",
+        opts: ["Read LOWER than actual altitude", "Read HIGHER than actual altitude", "Be unaffected", "Read zero"],
         ans: 1,
-        exp: "The alternate static source typically draws cockpit cabin air. Cockpit pressure is slightly lower than outside (due to airflow), causing instruments to read slightly in error: altimeter slightly high, ASI slightly fast, VSI briefly shows a climb."
+        exp: "Alternate static source typically vents to cabin air, which has slightly lower pressure than outside due to venturi effect. Lower static = altimeter reads HIGHER than actual. Also: ASI reads faster; VSI briefly indicates climb."
       },
       {
-        q: "Gyroscopic precession means that a force applied to a spinning gyro results in a reaction:",
-        opts: ["Directly opposite the applied force", "90° ahead in the direction of rotation", "180° from the point of application", "In the same direction as the applied force"],
+        q: "The LOWER limit of the WHITE ARC on the ASI represents:",
+        opts: ["Maximum flap extended speed (VFE)", "Power-off stall speed in landing configuration (VS0)", "Maximum structural cruising speed (VNO)", "Never-exceed speed (VNE)"],
         ans: 1,
-        exp: "Gyroscopic precession: the resultant force appears 90° ahead in the direction of rotation. This is why heading indicators precess over time and why propeller gyroscopic effects appear in specific axes during pitch/yaw maneuvers."
+        exp: "White arc = flap operating range. Lower limit = VS0 (stall in landing config); upper limit = VFE (max flap extended)."
       },
       {
-        q: "The heading indicator must be periodically realigned with the magnetic compass because:",
-        opts: ["Magnetic variation changes with position", "The gyroscope precesses due to friction and Earth's rotation", "The compass has acceleration errors", "The HI is affected by temperature changes"],
+        q: "The UPPER limit of the GREEN ARC corresponds to:",
+        opts: ["VNE — never-exceed speed", "VNO — maximum structural cruising speed", "VFE — maximum flap extended speed", "VA — maneuvering speed"],
         ans: 1,
-        exp: "The HI's gyroscope slowly drifts (precesses) due to mechanical bearing friction and the apparent motion caused by Earth's rotation. Realign every 15 minutes during straight, unaccelerated flight using the magnetic compass."
+        exp: "Green arc = normal operating range. Lower limit = VS1; upper limit = VNO. The yellow arc (caution) goes from VNO to VNE (red line)."
       },
       {
-        q: "A blocked static port causes the VSI to:",
-        opts: ["Read zero regardless of actual vertical speed", "Read double the actual vertical speed", "Fluctuate rapidly between climbs and descents", "Show only climbs, not descents"],
+        q: "Design maneuvering speed (VA) is the speed:",
+        opts: ["Above which structural damage from gusts is impossible", "Below which a single full deflection of one control in smooth air will not damage the aircraft", "At which the airplane achieves maximum range", "Above which the landing gear must be retracted"],
+        ans: 1,
+        exp: "At or below VA, a single full control deflection on one axis in smooth air will not damage the airplane. Used in turbulence. Note: NOT marked on the ASI; varies with weight."
+      },
+      {
+        q: "Best ANGLE-of-climb speed is denoted as:",
+        opts: ["VX", "VY", "VG", "VLE"],
         ans: 0,
-        exp: "With a blocked static port, no pressure change can reach the VSI's static side. The VSI will show zero regardless of actual vertical speed. The altimeter freezes and the ASI becomes unreliable as well."
+        exp: "VX = best ANGLE of climb (max altitude per DISTANCE — short-field obstacle takeoff). VY = best RATE of climb (max altitude per TIME — fastest climb)."
+      },
+      {
+        q: "Best GLIDE speed (best L/D) is denoted as:",
+        opts: ["VLO", "VR", "VG", "VS1"],
+        ans: 2,
+        exp: "VG = best glide speed. Provides the L/D MAX angle of attack in a power-off glide for the greatest glide range."
+      },
+      {
+        q: "True airspeed (TAS) compared to indicated airspeed (IAS) at altitude:",
+        opts: ["IAS > TAS at altitude", "TAS > IAS at altitude (approximately 2% per 1,000 ft)", "TAS = IAS at all altitudes", "Independent of altitude"],
+        ans: 1,
+        exp: "Air is less dense at altitude, so for a given IAS the airplane moves faster (TAS). Rule of thumb: add about 2% per 1,000 ft of altitude."
+      },
+      {
+        q: "ISA standard sea-level temperature and pressure:",
+        opts: ["0°C and 30.00 in. Hg", "15°C and 29.92 in. Hg", "20°C and 1,000 hPa", "10°C and 29.50 in. Hg"],
+        ans: 1,
+        exp: "International Standard Atmosphere (ISA): 15°C (59°F) and 29.92\" Hg (1,013.2 hPa) at sea level."
+      },
+      {
+        q: "Pressure altitude is the indicated altitude when the altimeter is set to:",
+        opts: ["Local QNH", "29.92 inches of mercury", "The departure airport elevation", "The current temperature in degrees Celsius"],
+        ans: 1,
+        exp: "Pressure altitude is the height above the standard datum plane (29.92\" Hg). It equals true altitude under standard conditions; used for performance calculations and at/above FL180."
+      },
+      {
+        q: "When operating above 18,000 ft MSL, the altimeter is set to:",
+        opts: ["The closest reported altimeter setting", "29.92 inches of mercury", "Whatever is published on the en-route chart", "30.00 inches of mercury"],
+        ans: 1,
+        exp: "Above 18,000 ft MSL, all aircraft set the altimeter to 29.92\" Hg and report altitudes as Flight Levels (FL)."
+      },
+      {
+        q: "A change in altimeter setting from 29.15 to 29.85 (an increase of 0.70\") would cause the indicated altitude to:",
+        opts: ["Decrease by 70 ft", "Decrease by 700 ft", "Increase by 700 ft", "Increase by 7,000 ft"],
+        ans: 2,
+        exp: "Approximately 1,000 ft per 1\" Hg. A 0.70\" increase in setting raises the indicated altitude by ~700 ft."
+      },
+      {
+        q: "'From HIGH to LOW, look out BELOW' refers to flying from:",
+        opts: ["High to low altitude — descending", "High to low pressure (or temperature) without resetting altimeter → actual altitude is LOWER than indicated", "High to low frequency on the comm radio", "High to low pressure systems on a sectional"],
+        ans: 1,
+        exp: "When flying from high to low pressure (or temperature) without resetting the altimeter, the aircraft is actually LOWER than indicated — terrain clearance is reduced ('look out below')."
+      },
+      {
+        q: "When CRUISING below 18,000 ft MSL, the altimeter setting must be from a station along the route of flight within:",
+        opts: ["50 NM", "100 NM", "200 NM", "Any station in the same region"],
+        ans: 1,
+        exp: "14 CFR 91.121 requires the current altimeter setting from a station within 100 NM along the route. If none available, use an appropriate station."
+      },
+      {
+        q: "Which two fundamental properties of gyroscopes are used in flight instruments?",
+        opts: ["Rigidity in space and precession", "Centrifugal force and inertia", "Bernoulli's principle and Newton's 3rd law", "Magnetic field alignment and inertia"],
+        ans: 0,
+        exp: "Rigidity in space (AI, HI) — gyro maintains its plane of rotation. Precession (Turn Coordinator) — force applied creates a reaction 90° ahead in rotation direction."
+      },
+      {
+        q: "A STANDARD-RATE TURN is:",
+        opts: ["1° per second", "3° per second (360° in 2 minutes)", "5° per second", "10° per second (360° in 1 minute)"],
+        ans: 1,
+        exp: "Standard rate = 3°/second → 360° in 2 minutes. Indicated by the wing-tip alignment with the standard-rate marker on the turn coordinator."
+      },
+      {
+        q: "The ball in the inclinometer is centered when the airplane is in:",
+        opts: ["Any turn", "Coordinated flight", "A skidding turn", "A slipping turn"],
+        ans: 1,
+        exp: "Centered ball = coordinated (balanced) flight. Ball OUTSIDE turn = SKID (too much rudder). Ball INSIDE turn = SLIP (too little rudder). Rule: 'step on the ball'."
+      },
+      {
+        q: "In a SKIDDING turn, to coordinate, the pilot should:",
+        opts: ["Apply more rudder in the direction of turn", "Reduce rudder pressure, increase bank, or both — to center the ball", "Apply opposite aileron", "Reduce power"],
+        ans: 1,
+        exp: "A skid means rate of turn is too great for the angle of bank. Reduce rudder pressure (was too much), increase bank to match the rate of turn, or combine both."
+      },
+      {
+        q: "The heading indicator must be aligned with the magnetic compass approximately every:",
+        opts: ["5 minutes", "15 minutes", "30 minutes", "60 minutes"],
+        ans: 1,
+        exp: "Due to gyroscopic precession from bearing friction or improper vacuum pressure, realign every 15 minutes during straight-and-level, unaccelerated flight."
+      },
+      {
+        q: "What does the AHRS (Attitude and Heading Reference System) in a glass cockpit do?",
+        opts: ["Provides pitot/static derived airspeed", "Replaces free-spinning gyros with solid-state laser systems; sends attitude info to the PFD", "Generates the moving map display", "Tunes navigation frequencies automatically"],
+        ans: 1,
+        exp: "AHRS uses solid-state laser/sensor systems instead of mechanical gyros. No tumbling. Pitch/bank info sent to PFD. Heading derived from a magnetometer."
+      },
+      {
+        q: "What does the Air Data Computer (ADC) provide?",
+        opts: ["Attitude and heading data", "Airspeed, altitude, and vertical speed from pitot/static inputs", "Engine data only", "GPS position"],
+        ans: 1,
+        exp: "ADC receives pitot and static inputs, computes the differential, and generates airspeed, altitude, and vertical speed displays for the PFD."
+      },
+      {
+        q: "The PRIMARY function of engine oil is:",
+        opts: ["Cleaning carbon from spark plugs", "Lubricating, sealing, cleaning, and (most importantly) COOLING engine components", "Reducing fuel consumption", "Powering the gyroscopic instruments"],
+        ans: 1,
+        exp: "Engine oil has four basic functions: lubricate, seal, clean, COOL. Cooling is the most important — always check oil level before long summer cross-countries."
+      },
+      {
+        q: "Excessively high engine temperatures can be reduced by:",
+        opts: ["Increasing power and climbing more steeply", "Enriching the mixture, opening cowl flaps, reducing power, or increasing airspeed", "Using lower-octane fuel", "Adding carb heat"],
+        ans: 1,
+        exp: "Reduce engine temps by: enriching mixture (more fuel = more cooling), opening cowl flaps (more cooling airflow), reducing power, increasing airspeed (more ram air). Use higher-grade fuel per POH."
+      },
+      {
+        q: "On a constant-speed propeller airplane, propeller RPM is controlled by:",
+        opts: ["The throttle", "The propeller control (governor)", "The mixture control", "The carburetor heat"],
+        ans: 1,
+        exp: "The propeller control adjusts blade angle to maintain RPM (registered on the tachometer). The throttle controls manifold pressure (power output)."
+      },
+      {
+        q: "On a constant-speed propeller setup, what combination should be AVOIDED?",
+        opts: ["High RPM with high MP", "High MP with low RPM", "Low MP with low RPM", "Low MP with high RPM"],
+        ans: 1,
+        exp: "High manifold pressure with low RPM is hard on the cylinders. Reduce MP before reducing RPM; increase RPM before increasing MP. Consult POH/AFM."
+      },
+      {
+        q: "Magnetos are powered by:",
+        opts: ["The aircraft battery", "The aircraft electrical system", "Engine rotation (self-contained, geared to the crankshaft)", "An external power supply"],
+        ans: 2,
+        exp: "Magnetos are engine-driven and completely SEPARATE from the aircraft electrical system. They continue to fire as long as the engine turns, regardless of master switch."
+      },
+      {
+        q: "A broken P-lead (magneto ground wire) creates a hazard because:",
+        opts: ["The magneto will not work", "The magneto will continue to fire even with ignition switch OFF, so moving the propeller could start the engine", "The engine cannot be shut down", "Both B and C"],
+        ans: 3,
+        exp: "A broken P-lead means the magneto remains 'hot'. Moving the prop could start the engine even with the switch off. To stop a running engine in this condition: move mixture to idle cut-off. Always treat the prop as live."
+      },
+      {
+        q: "Carburetor ice is MOST LIKELY when:",
+        opts: ["OAT is below freezing with low humidity", "OAT is between approximately -7°C (20°F) and 21°C (70°F) and humidity is above 80%", "OAT is above 38°C (100°F)", "Flying in clear, dry air"],
+        ans: 1,
+        exp: "Carburetor icing is most likely with OAT between 20°F and 70°F and humidity above 80% — even on clear days. The carburetor venturi can cool air by 15°C (27°F), causing ice formation."
+      },
+      {
+        q: "The first indication of carburetor ice in a fixed-pitch propeller airplane is:",
+        opts: ["Drop in manifold pressure", "Loss of RPM", "Increase in EGT", "Engine roughness only"],
+        ans: 1,
+        exp: "Fixed-pitch: loss of RPM is the first indication (engine roughness follows). On constant-speed propellers, the first indication is a drop in MP since the governor maintains RPM by adjusting pitch."
+      },
+      {
+        q: "Carburetor heat should be applied:",
+        opts: ["Partially, to gradually warm the carburetor", "Fully (full ON), and left on until certain ice has been removed", "Only during takeoff", "Only during cruise"],
+        ans: 1,
+        exp: "Apply FULL carb heat when icing is detected. Partial heat may bring induction air into the icing range and worsen the problem. Do NOT use carb heat at full power (takeoff)."
+      },
+      {
+        q: "When carburetor heat is applied with NO ICE present (fixed-pitch), what happens to RPM?",
+        opts: ["RPM rises immediately", "RPM drops (warmer, less dense air; richer mixture)", "No change", "RPM oscillates"],
+        ans: 1,
+        exp: "Carb heat air is hotter, less dense, and enriches the mixture — power and RPM decrease slightly. If ICE was present: RPM first drops, then GRADUALLY increases as ice melts."
+      },
+      {
+        q: "At altitude, the fuel/air mixture should be:",
+        opts: ["Enriched (more fuel) to compensate for thinner air", "Leaned (less fuel) to compensate for decreased air density", "Left at full rich", "Adjusted only on the ground"],
+        ans: 1,
+        exp: "Air density decreases with altitude. Without leaning, the mixture becomes too rich (carb meters fuel by volume, but the air WEIGHT decreases). Lean to maintain the proper fuel/air ratio."
+      },
+      {
+        q: "Detonation is caused by:",
+        opts: ["Using HIGHER-than-specified octane fuel", "Using LOWER-than-specified octane fuel or excessive engine temperature", "Operating with full-rich mixture", "Using carb heat at high altitude"],
+        ans: 1,
+        exp: "Detonation = fuel/air mixture explodes instead of burning evenly. Causes: lower-than-specified octane fuel, OR excessive engine temperatures. Can damage pistons/cylinders/valves."
+      },
+      {
+        q: "100LL aviation fuel is colored:",
+        opts: ["Red", "Green", "Blue", "Clear"],
+        ans: 2,
+        exp: "100LL = BLUE. Fuels are dyed at the refinery for identification. If accidentally mixed, fuels turn STRAW-COLORED."
+      },
+      {
+        q: "Before each flight, the pilot should:",
+        opts: ["Drain a sample from each fuel sump and strainer to check for water and contamination", "Top off the tanks only", "Check oil pressure", "Switch to the auxiliary fuel tank"],
+        ans: 0,
+        exp: "Always drain and visually inspect fuel from sumps and strainers for water and contamination before every flight."
+      },
+      {
+        q: "Aircraft engine preheat is recommended at temperatures below:",
+        opts: ["32°F (0°C)", "20°F", "0°F (required by most manufacturers)", "Always required regardless of temperature"],
+        ans: 2,
+        exp: "Most engine manufacturers REQUIRE preheat below 0°F and RECOMMEND it below 20°F. Cold thick oil doesn't lubricate properly during start, risking engine damage."
+      },
+      {
+        q: "Most light airplanes have what type of electrical system?",
+        opts: ["12-volt battery / 14-volt direct-current alternator", "24-volt battery / 28-volt alternator", "120-volt alternating current", "Battery only (no alternator)"],
+        ans: 0,
+        exp: "Most light airplanes have a 12-volt battery with a 14-volt DC alternator system. Larger aircraft may use 24/28 volts for additional electrical capacity."
+      },
+      {
+        q: "An ammeter showing a NEGATIVE indication (other than briefly during start) means:",
+        opts: ["The battery is fully charged", "More current is being drawn from the battery than is being replaced — possible alternator failure or overload", "The starter is engaged", "Normal cruise operation"],
+        ans: 1,
+        exp: "Negative reading means battery discharging. Likely alternator failure or system overload. Turn off nonessential electrical equipment to conserve battery."
+      },
+      {
+        q: "A circuit breaker has popped for the SECOND time after being reset. The pilot should:",
+        opts: ["Reset it again — it may have been an isolated event", "Push it in harder", "NOT reset it — likely a short circuit; resetting risks fire", "Reset, then turn off the master switch"],
+        ans: 2,
+        exp: "If a breaker trips twice, there's probably a short. Do NOT reset — fire risk. Note the affected system as inoperative."
+      },
+      {
+        q: "An advantage of an ALTERNATOR over a GENERATOR is:",
+        opts: ["Produces adequate current at low engine RPM and has more constant output", "Heavier and more durable", "Requires no voltage regulator", "Uses less fuel"],
+        ans: 0,
+        exp: "Alternators produce sufficient current even at low RPM (generators do not). More constant output across RPM range. Also lighter, cheaper to maintain, less prone to overload."
+      },
+      {
+        q: "The master switch controls:",
+        opts: ["All electrical systems EXCEPT the ignition system", "Only the avionics", "The engine ignition magnetos", "Only the starter"],
+        ans: 0,
+        exp: "Master switch energizes the entire electrical bus EXCEPT ignition (powered by magnetos). Even with master switch off, the engine can fire if magneto P-lead is grounded improperly."
+      },
+      {
+        q: "If the alternator fails in flight, the pilot should:",
+        opts: ["Continue using all systems normally", "Turn off nonessential electrical equipment to conserve battery energy", "Increase engine RPM to maximum", "Use carb heat to restore alternator function"],
+        ans: 1,
+        exp: "With alternator failure, ALL electrical load is on the battery. Turn off nonessential equipment (interior lights, second comm, etc.) to extend battery life. Land as soon as practical."
+      },
+      {
+        q: "The PURPOSE of installing a magnetometer on a glass-panel aircraft is to:",
+        opts: ["Replace the gyroscope in the heading indicator", "Sense Earth's magnetic flux to provide heading information to the AHRS/PFD", "Measure engine oil temperature", "Detect carburetor icing"],
+        ans: 1,
+        exp: "The magnetometer senses the Earth's magnetic field and provides heading info to the AHRS, which is then displayed on the PFD. Replaces the function (but not the principle) of the spinning HI."
+      },
+      {
+        q: "What does the white arc on the airspeed indicator UPPER limit indicate?",
+        opts: ["VS0 — landing config stall", "VFE — maximum flap-extended speed", "VNO — max structural cruising speed", "VNE — never exceed"],
+        ans: 1,
+        exp: "Top of the white arc = VFE = max flap-extended speed. Exceeding this with flaps down can cause structural damage to the flap mechanism."
+      },
+      {
+        q: "An exhaust gas temperature (EGT) gauge helps the pilot to:",
+        opts: ["Detect carburetor ice", "Lean the mixture more precisely, potentially saving up to 10% fuel", "Monitor oil pressure", "Determine TAS"],
+        ans: 1,
+        exp: "EGT lets the pilot lean to peak EGT, then enrich a specified amount (typically 25-75°F drop). Properly used, can reduce fuel consumption by ~10%."
+      },
+      {
+        q: "On a fixed-pitch propeller aircraft, RPM is controlled by:",
+        opts: ["The propeller governor", "The throttle (direct relationship to RPM)", "The mixture control", "The constant-speed unit"],
+        ans: 1,
+        exp: "Fixed-pitch propellers have no governor — throttle position directly controls RPM. The throttle controls power, and RPM follows."
+      },
+      {
+        q: "What is the function of the float in a float-type carburetor?",
+        opts: ["Reduces fuel pressure", "Maintains constant fuel level in the float chamber (via a needle valve) to meter correct amount into the carburetor", "Pumps fuel during startup", "Prevents detonation"],
+        ans: 1,
+        exp: "The float operates a needle valve that opens/closes the fuel inlet to maintain a constant fuel level in the chamber. This meters proper fuel quantity through the discharge nozzle."
+      },
+      {
+        q: "If the carb heat handle is left ON during a takeoff:",
+        opts: ["Takeoff distance will decrease", "Engine will produce LESS power (warmer, less dense air; richer mixture)", "Carburetor ice cannot form during takeoff regardless", "Engine RPM will exceed maximum"],
+        ans: 1,
+        exp: "Carb heat reduces engine power because the hot air is less dense and the mixture becomes richer. Carb heat should NOT be used during full-power operations like takeoff (except per POH)."
       },
     ]
   },

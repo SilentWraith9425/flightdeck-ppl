@@ -12,7 +12,9 @@
       "Bash(mkdir -p /tmp/sg1_chunks)",
       "Bash(python3 -c ' *)",
       "Read(//tmp/**)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(mkdir -p /tmp/sg2_chunks)",
+      "Bash(rm -f /tmp/sg2_chunks/chunk_*.txt)"
     ]
   }
 }
